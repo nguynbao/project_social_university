@@ -63,4 +63,4 @@
 
 1. Clone repository:
    ```bash
-   git clone [https://github.com/yourusername/yourprojectname.git](https://github.com/nguynbao/project_Tin_tuc_android)
+   git clone (https://github.com/nguynbao/project_Tin_tuc_android)
