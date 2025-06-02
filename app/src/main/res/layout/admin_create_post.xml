@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#1A1A1A1">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCreatePost"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="📝 Tạo bài đăng"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:paddingHorizontal="12dp" />
+
+    </LinearLayout>
+
+    <!-- Form Content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical">
+
+            <!-- Tên câu lạc bộ -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tên câu lạc bộ"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/etClubName"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="#333333"
+                android:hint="Tên câu lạc bộ"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#AAAAAA"
+                android:paddingHorizontal="12dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Mô tả bài đăng -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mô tả bài đăng"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/etPostDescription"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="#333333"
+                android:hint="Mô tả bài đăng"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#AAAAAA"
+                android:paddingHorizontal="12dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Thời hạn kết thúc -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thời hạn kết thúc"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="10dp">
+
+                <EditText
+                    android:id="@+id/etEndDate"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#333333"
+                    android:hint="  Thời gian kết thuc"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#AAAAAA"
+                    android:src="@drawable/adminlich"/>
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/adminlich" />
+
+            </LinearLayout>
+
+            <!-- Hình ảnh đăng tải -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hình ảnh đăng tải"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Image Upload Area -->
+            <LinearLayout
+                android:id="@+id/layoutImageUpload"
+                android:layout_width="match_parent"
+                android:layout_height="97dp"
+                android:layout_marginBottom="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="96dp"
+                    android:layout_height="97dp"
+                    android:src="@drawable/img_1"
+                    android:tint="#AAAAAA" />
+
+            </LinearLayout>
+
+            <!-- Đăng tải button -->
+            <Button
+                android:id="@+id/btnUpload"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Đăng tải"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:background="#aaaa"
+                android:layout_marginTop="16dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
