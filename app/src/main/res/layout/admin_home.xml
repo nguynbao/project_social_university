@@ -5,31 +5,31 @@
     android:layout_height="match_parent">
 
     <!-- Header -->
+
+    <!-- Main Content Grid -->
+
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="253dp"
         android:layout_height="51dp"
         android:layout_marginStart="89dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginEnd="69dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
         android:background="@drawable/thame_header_gray"
         android:clipToPadding="false"
         android:elevation="4dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="12dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.243"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginEnd="8dp"
-            android:src="@drawable/startadmin"
-            android:tint="#1A1A1A" />
+            android:src="@drawable/startadmin"/>
 
         <TextView
             android:layout_width="160dp"
@@ -42,7 +42,6 @@
 
     </LinearLayout>
 
-    <!-- Main Content Grid -->
     <GridLayout
         android:layout_width="0dp"
         android:layout_height="321dp"

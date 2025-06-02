@@ -4,16 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1A1A1A">
-
-    <!-- Header -->
-
-    <!-- Form Content -->
-
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="253dp"
         android:layout_height="51dp"
         android:layout_marginStart="89dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="69dp"
         android:background="@drawable/thame_header_gray"
         android:clipToPadding="false"
@@ -22,7 +18,7 @@
         android:orientation="horizontal"
         android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.834"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -30,8 +26,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginEnd="8dp"
-            android:src="@drawable/penblackadmin"
-            android:tint="#1A1A1A" />
+            android:src="@drawable/penblackadmin" />
 
         <TextView
             android:layout_width="159dp"
@@ -117,18 +112,14 @@
 
                 <EditText
                     android:id="@+id/etEndDate"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:background="@drawable/edt_round_gray"
+                    android:drawableEnd="@drawable/adminlich_scaled"
                     android:hint="Thời gian kết thúc"
+                    android:paddingHorizontal="12dp"
                     android:textColor="#FFFFFF"
                     android:textColorHint="#AAAAAA" />
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/adminlich" />
 
             </LinearLayout>
 
@@ -144,16 +135,17 @@
             <!-- Image Upload Area -->
             <LinearLayout
                 android:id="@+id/layoutImageUpload"
-                android:layout_width="match_parent"
-                android:layout_height="97dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_bai_dang"
                 android:layout_marginBottom="16dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="96dp"
-                    android:layout_height="97dp"
+                    android:layout_width="184dp"
+                    android:layout_height="184dp"
                     android:src="@drawable/img_1" />
 
             </LinearLayout>

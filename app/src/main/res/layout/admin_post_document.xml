@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#1A1A1A1A">
+
+    <!-- Form Content -->
 
     <LinearLayout
         android:id="@+id/header"
@@ -11,11 +15,6 @@
         android:layout_height="51dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="89dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginEnd="69dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
         android:background="@drawable/thame_header_gray"
         android:clipToPadding="false"
         android:elevation="4dp"
@@ -23,7 +22,10 @@
         android:orientation="horizontal"
         android:padding="12dp"
         android:radius="16dp"
-        android:rotationX="-6">
+        android:rotationX="-6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:layout_width="24dp"
@@ -42,12 +44,16 @@
 
     </LinearLayout>
 
-    <!-- Form Content -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="538dp"
+        android:layout_marginTop="32dp"
         android:layout_weight="1"
-        android:padding="16dp">
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -110,21 +116,20 @@
             <!-- Document Upload Area -->
             <LinearLayout
                 android:id="@+id/layoutDocUpload"
-                android:layout_width="match_parent"
-                android:layout_height="103dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_bai_dang"
                 android:layout_marginBottom="16dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:orientation="vertical">
+                android:orietation="vertical">
 
                 <ImageView
                     android:layout_width="102dp"
                     android:layout_height="82dp"
-                    android:src="@drawable/createadmin"
-                    android:tint="#AAAAAA" />
+                    android:src="@drawable/createadmin"/>
 
             </LinearLayout>
-
             <!-- Đăng tải button -->
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnUpload"
@@ -136,7 +141,6 @@
                 android:textSize="16sp" />
 
         </LinearLayout>
-
     </ScrollView>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

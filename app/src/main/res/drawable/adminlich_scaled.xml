@@ -1,0 +1,12 @@
+<!-- res/drawable/adminlich_scaled.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <scale
+            android:scaleWidth="1"
+            android:scaleHeight="1">
+            <bitmap
+                android:src="@drawable/adminlich"
+                android:gravity="center" />
+        </scale>
+    </item>
+</layer-list>
