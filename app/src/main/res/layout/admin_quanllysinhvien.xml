@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Header -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="284dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="89dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="69dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/thame_header_gray"
+        android:clipToPadding="false"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/userimg"
+            android:tint="#1A1A1A" />
+
+        <TextView
+            android:layout_width="187dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Quản lý sinh viên"
+            android:textColor="#1A1A1A"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!-- ScrollView -->
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:orientation="vertical"
+            android:paddingHorizontal="45dp"
+            android:paddingTop="18dp"
+            android:paddingBottom="83dp">
+
+        <!-- Input 1: Lọc MSSV chờ duyệt -->
+        <EditText
+            android:id="@+id/etFilter1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/edt_round_gray"
+            android:hint="Lọc MSSV chờ duyệt"
+            android:paddingVertical="13dp"
+            android:paddingLeft="19dp"
+            android:paddingRight="38dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#AAAAAA"
+            android:textSize="20sp" />
+
+        <!-- Box 1 -->
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="212dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/edt_round_gray" />
+
+        <!-- Input 2: Lọc MSSV chờ duyệ -->
+        <EditText
+            android:id="@+id/etFilter2"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/edt_round_gray"
+            android:hint="Lọc MSSV chờ duyệ"
+            android:paddingVertical="13dp"
+            android:paddingLeft="19dp"
+            android:paddingRight="38dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#AAAAAA"
+            android:textSize="20sp" />
+
+        <!-- Box 2 -->
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="260dp"
+            android:background="@drawable/edt_round_gray" />
+
+    </LinearLayout>
+
+</ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
