@@ -1,40 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#1A1A1A1">
+    android:background="#1A1A1A">
 
     <!-- Header -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:gravity="center_vertical">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnCreatePost"
-            android:layout_width="wrap_content"
-            android:layout_height="36dp"
-            android:text="📝 Tạo bài đăng"
-            android:textColor="#FFFFFF"
-            android:textSize="12sp"
-            android:paddingHorizontal="12dp" />
+    <!-- Form Content -->
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="253dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="89dp"
+        android:layout_marginEnd="69dp"
+        android:background="@drawable/thame_header_gray"
+        android:clipToPadding="false"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.834"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/penblackadmin"
+            android:tint="#1A1A1A" />
+
+        <TextView
+            android:layout_width="159dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Tạo bài đăng"
+            android:textColor="#1A1A1A"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
-    <!-- Form Content -->
     <ScrollView
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:padding="16dp">
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:orientation="vertical">
 
             <!-- Tên câu lạc bộ -->
@@ -50,7 +72,7 @@
                 android:id="@+id/etClubName"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:background="#333333"
+                android:background="@drawable/edt_round_gray"
                 android:hint="Tên câu lạc bộ"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#AAAAAA"
@@ -70,7 +92,7 @@
                 android:id="@+id/etPostDescription"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:background="#333333"
+                android:background="@drawable/edt_round_gray"
                 android:hint="Mô tả bài đăng"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#AAAAAA"
@@ -98,11 +120,10 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="#333333"
-                    android:hint="  Thời gian kết thuc"
+                    android:background="@drawable/edt_round_gray"
+                    android:hint="Thời gian kết thúc"
                     android:textColor="#FFFFFF"
-                    android:textColorHint="#AAAAAA"
-                    android:src="@drawable/adminlich"/>
+                    android:textColorHint="#AAAAAA" />
 
                 <ImageView
                     android:layout_width="24dp"
@@ -133,24 +154,22 @@
                 <ImageView
                     android:layout_width="96dp"
                     android:layout_height="97dp"
-                    android:src="@drawable/img_1"
-                    android:tint="#AAAAAA" />
+                    android:src="@drawable/img_1" />
 
             </LinearLayout>
 
-            <!-- Đăng tải button -->
-            <Button
+            <!-- Đăng tải Button -->
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnUpload"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="45dp"
+                android:background="@drawable/btn_round_gray"
                 android:text="Đăng tải"
                 android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:background="#aaaa"
-                android:layout_marginTop="16dp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 
     </ScrollView>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

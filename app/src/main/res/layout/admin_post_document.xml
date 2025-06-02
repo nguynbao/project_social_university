@@ -5,26 +5,40 @@
     android:orientation="vertical"
     android:background="#1A1A1A1A">
 
-    <!-- Header -->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/header"
+        android:layout_width="253dp"
+        android:layout_height="51dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="89dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="69dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/thame_header_gray"
+        android:clipToPadding="false"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="16dp"
-        android:gravity="center_vertical">
+        android:padding="12dp"
+        android:radius="16dp"
+        android:rotationX="-6">
 
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/doc" />
 
         <TextView
-            android:id="@+id/btnUploadDoc"
-            android:layout_width="444dp"
-            android:layout_height="33dp"
-            android:background="#FFFF"
+            android:layout_width="159dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingHorizontal="20dp"
             android:text="Đăng tải tài liệu"
             android:textColor="#1A1A1A"
-            android:textSize="12sp" />
-
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -54,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginBottom="16dp"
-                android:background="#333333"
+                android:background="@drawable/edt_round_gray"
                 android:hint="Tên câu lạc bộ"
                 android:paddingHorizontal="12dp"
                 android:textColor="#FFFFFF"
@@ -75,10 +89,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:layout_marginBottom="16dp"
-                android:background="#333333"
+                android:background="@drawable/edt_round_gray"
                 android:gravity="top"
                 android:hint="Mô tả bài đăng"
-                android:input
                 android:inputType="textMultiLine"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="12dp"
@@ -113,15 +126,13 @@
             </LinearLayout>
 
             <!-- Đăng tải button -->
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnUpload"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:background="#333333"
+                android:layout_height="45dp"
+                android:background="@drawable/btn_round_gray"
                 android:text="Đăng tải"
-                android:textColor="#1A1A1A"
+                android:textColor="#FFFFFF"
                 android:textSize="16sp" />
 
         </LinearLayout>
