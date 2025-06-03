@@ -15,4 +15,7 @@ public interface RoleDao {
 
     @Query("SELECT * FROM role_table")
     List<Role> getAllRoles();
+
+    @Query("SELECT COUNT(*) FROM role_table")
+    int count();  // <- Tự tạo hàm này
 }

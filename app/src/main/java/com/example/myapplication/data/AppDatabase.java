@@ -1,6 +1,7 @@
 package com.example.myapplication.data;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -15,7 +16,7 @@ import com.example.myapplication.data.entity.User;
 
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, Role.class}, version = 1)
+@Database(entities = {User.class, Role.class}, version = 3)
 public abstract class AppDatabase extends RoomDatabase {
     private static volatile AppDatabase INSTANCE;
 
@@ -31,11 +32,19 @@ public abstract class AppDatabase extends RoomDatabase {
                                     AppDatabase.class, "app_database")
                             .fallbackToDestructiveMigration().addCallback(new Callback() {
                                 @Override
-                                public void onCreate(@NonNull SupportSQLiteDatabase db) {
-                                    super.onCreate(db);
+                                public void onOpen(@NonNull SupportSQLiteDatabase db) {
+                                    super.onOpen(db);
                                     Executors.newSingleThreadExecutor().execute(() -> {
-                                        getDatabase(context).roleDao().insert(new Role(1, "Admin"));
-                                        getDatabase(context).roleDao().insert(new Role(2, "User"));
+                                        AppDatabase database = getDatabase(context);
+                                        if (database.roleDao().count() == 0){
+                                            database.roleDao().insert(new Role(1, "Admin"));
+                                            database.roleDao().insert(new Role(2, "Student"));
+                                            Log.d("RoomCallback", "Đã thêm role mặc định");
+                                        }
+                                        if (database.userDao().count() == 0) {
+                                            database.userDao().insert(new User("Admin", "admin123@gmail.com", "admin123", "null", "null", "null", 1));
+                                            Log.d("RoomCallback", "Đã thêm admin mặc định");
+                                        }
                                     });
                                 }
                             }).build();

@@ -3,6 +3,7 @@ package com.example.myapplication.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import com.example.myapplication.data.entity.User;
 import com.example.myapplication.data.entity.UserWithRole;
 import com.example.myapplication.ui_admin.admin_home;
 
+import java.util.List;
 import java.util.concurrent.Executors;
 
 public class activity_login extends AppCompatActivity {
@@ -42,22 +44,39 @@ public class activity_login extends AppCompatActivity {
         password = findViewById(R.id.pass);
         login = findViewById(R.id.btn_login);
         signup = findViewById(R.id.btn_signup);
-        AppDatabase db =  AppDatabase.getDatabase(getApplicationContext());
-
-        userDao = db.userDao();
-
-        User user = new User("Ngô Thành Danh", "tinhoc7645@gmail.com", "787870", "225481028", "22DHTT06", "0919212029",1);
-        Executors.newSingleThreadExecutor().execute(()-> {
-            userDao.insert(user);
-        });
-
-        Executors.newSingleThreadExecutor().execute(() ->{
-            UserWithRole userWithRole = userDao.getUserWithRoleById(1);
-            if (userWithRole != null){
-                Log.d("User:", userWithRole.user.getUsername());
-                Log.d("Quyền:", userWithRole.role.getRoleName());
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String getEmail = email.getText().toString();
+                String getPass = password.getText().toString();
+                Executors.newSingleThreadExecutor().execute(()-> {
+                    AppDatabase db =  AppDatabase.getDatabase(getApplicationContext());
+                    userDao = db.userDao();
+                    List<UserWithRole> userWithRoleList = userDao.getAllUsersWithRole();
+                    boolean loginSuccess = false;
+                    for (UserWithRole userWithRole :userWithRoleList){
+                        if (userWithRole.user.getEmail().equals(getEmail) && userWithRole.user.getPassword().equals(getPass)){
+                            loginSuccess = true;
+                            int roleId = userWithRole.user.roleId();
+                            runOnUiThread(()->{
+                                if (roleId == 1){
+                                    Intent intent = new Intent(activity_login.this, admin_home.class);
+                                    startActivity(intent);
+                                }else {
+                                    Intent intent = new Intent(activity_login.this, activity_home.class);
+                                    startActivity(intent);
+                                }
+                            });
+                            break;
+                        }
+                    }
+                    if (!loginSuccess){
+                        runOnUiThread(() -> {
+                            Toast.makeText(activity_login.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
+                        });
+                    }
+                });
             }
         });
-
     }
 }
