@@ -4,9 +4,11 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 
 import com.example.myapplication.data.entity.User;
+import com.example.myapplication.data.entity.UserWithRole;
 
 import java.util.List;
 
@@ -29,4 +31,12 @@ public interface UserDao {
 
     @Query("SELECT * FROM user_table WHERE username = :username AND password = :password")
     User login(String username, String password);
+
+    @Transaction
+    @Query("SELECT * FROM user_table")
+    List<UserWithRole> getAllUsersWithRole();
+
+    @Transaction
+    @Query("SELECT * FROM user_table WHERE id = :userId")
+    UserWithRole getUserWithRoleById(int userId);
 }

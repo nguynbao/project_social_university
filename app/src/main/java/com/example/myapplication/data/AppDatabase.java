@@ -1,4 +1,3 @@
 package com.example.myapplication.data;
-
-public class AppDatabase {
+public class AppDatabase{
 }

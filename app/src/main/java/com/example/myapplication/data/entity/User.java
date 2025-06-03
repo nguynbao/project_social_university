@@ -1,24 +1,31 @@
 package com.example.myapplication.data.entity;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "user_table")
-public class User {
+@Entity(tableName = "user_table",
+            foreignKeys = @ForeignKey(entity = Role.class,
+                                        parentColumns = "id",
+                                        childColumns = "role_id",
+                                        onDelete = ForeignKey.CASCADE))
 
+public class User {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
     private String username;
     private String password;
     private String name;
-    private String role;
+    @ColumnInfo(name = "role_id")
+    private int roleId;
 
     // Constructor
-    public User(String username, String password, String name, String role) {
+    public User(String username, String password, String name, int roleId) {
         this.username = username;
         this.password = password;
         this.name = name;
-        this.role = role;
+        this.roleId = roleId;
     }
 
     // Getter & Setter
@@ -31,6 +38,6 @@ public class User {
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
 
-    public String getRole() { return role; }
-    public void setRole(String role) { this.role = role; }
+    public int getRoleId() { return roleId; }
+    public void setRoleId(int roleId) { this.roleId = roleId; }
 }
