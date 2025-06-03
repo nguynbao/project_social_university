@@ -12,10 +12,10 @@ public class User {
     private String username;
     private String email;
     private String password;
-    private String role;  // có thể dùng String hoặc int tùy bạn
+    private int role;  // có thể dùng String hoặc int tùy bạn
 
     // Constructor có tham số - tên tham số phải đúng với tên field
-    public User(String username, String email, String password, String role) {
+    public User(String username, String email, String password, int role) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -60,11 +60,11 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
+    public int getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(int role) {
         this.role = role;
     }
 }
