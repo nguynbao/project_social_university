@@ -21,10 +21,15 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.myapplication.R;
+import com.example.myapplication.data.AppDatabase;
+import com.example.myapplication.data.dao.PostDao;
+import com.example.myapplication.data.entity.Post;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.Executors;
 
 public class admin_creatPost extends AppCompatActivity {
     private static final  int REQUEST_CODE_IMAGE =1;
@@ -33,6 +38,7 @@ public class admin_creatPost extends AppCompatActivity {
     TextView edttimeSelection;
     Button btnUpload;
     ImageView timeSelection, imgUpload;
+    String imagePath_Uri, nameClub, content, deadline;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +48,7 @@ public class admin_creatPost extends AppCompatActivity {
         etPostDescription = findViewById(R.id.etPostDescription);
         edttimeSelection = findViewById(R.id.edttimeSelection);
         timeSelection = findViewById(R.id.timeSelection);
+        imgUpload = findViewById(R.id.imgUpload);
         btnUpload = findViewById(R.id.btnUpload);
         timeSelection.setOnClickListener(v -> showDateTimePicker());
         imgUpload.setOnClickListener(new View.OnClickListener() {
@@ -52,9 +59,8 @@ public class admin_creatPost extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_CODE_IMAGE);
             }
         });
-        String nameClub = edtNameClub.getText().toString();
-        String content = etPostDescription.getText().toString();
-        String deadline = edttimeSelection.getText().toString();
+
+        btnUpload.setOnClickListener(v-> createPost());
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -63,6 +69,32 @@ public class admin_creatPost extends AppCompatActivity {
         });
 
     }
+
+    private void createPost() {
+        nameClub = edtNameClub.getText().toString();
+        content = etPostDescription.getText().toString();
+        deadline = edttimeSelection.getText().toString();
+        String imagePath = imagePath_Uri;
+        Post post = new Post(nameClub, content, deadline, imagePath);
+        Executors.newSingleThreadExecutor().execute(()->{
+            AppDatabase db = AppDatabase.getDatabase(getApplicationContext());
+            PostDao postDao = db.postDao();
+            postDao.insert(post);
+            List<Post> postList =  postDao.getAllPosts();
+            for (Post post1 : postList){
+                Log.d("Post", post1.getNameClub());
+                Log.d("Post", post1.getContent());
+                Log.d("Post", post1.getDeadline());
+                Log.d("Post", post1.getImagePath());
+            }
+            runOnUiThread(()->{
+                Toast.makeText(admin_creatPost.this, "Đăng bài thành công", Toast.LENGTH_SHORT).show();
+            });
+        });
+        finish();
+
+    }
+
     private void showDateTimePicker() {
         final Calendar calendar = Calendar.getInstance();
         Log.d("Test", "đã gọi được vào đây");
@@ -105,6 +137,7 @@ public class admin_creatPost extends AppCompatActivity {
             selectedImageUri = data.getData();
             if (selectedImageUri != null) {
                 imgUpload.setImageURI(selectedImageUri); // hiển thị ảnh vừa chọn
+                imagePath_Uri = String.valueOf(selectedImageUri);
             }
         }
     }

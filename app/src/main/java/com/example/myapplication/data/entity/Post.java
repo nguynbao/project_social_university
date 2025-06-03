@@ -1,6 +1,7 @@
 package com.example.myapplication.data.entity;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "post_table")
@@ -12,9 +13,7 @@ public class Post {
     private String deadline;
     private String imagePath;
 
-
-    public Post(int id, String nameClub, String content, String deadline,String imagePath) {
-        this.id = id;
+    public Post(String nameClub, String content, String deadline,String imagePath) {
         this.nameClub = nameClub;
         this.content = content;
         this.deadline = deadline;

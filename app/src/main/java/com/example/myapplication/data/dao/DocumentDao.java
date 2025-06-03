@@ -22,6 +22,6 @@ public interface DocumentDao {
     @Delete
     void delete(Document document);
 
-    @Query("SELECT * FROM document_table ORDER BY date DESC")
+    @Query("SELECT * FROM document_table")
     List<Document> getAllDocuments();
 }

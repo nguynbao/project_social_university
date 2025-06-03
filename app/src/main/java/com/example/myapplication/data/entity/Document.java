@@ -10,14 +10,12 @@ public class Document {
 
     private String title;
     private String fileUrl;
-    private String uploader;
-    private String date;
+    private String content;
 
-    public Document(String title, String fileUrl, String uploader, String date) {
+    public Document(String title, String fileUrl, String content ) {
         this.title = title;
         this.fileUrl = fileUrl;
-        this.uploader = uploader;
-        this.date = date;
+        this.content = content;
     }
 
     // Getters and setters
@@ -30,9 +28,6 @@ public class Document {
     public String getFileUrl() { return fileUrl; }
     public void setFileUrl(String fileUrl) { this.fileUrl = fileUrl; }
 
-    public String getUploader() { return uploader; }
-    public void setUploader(String uploader) { this.uploader = uploader; }
-
-    public String getDate() { return date; }
-    public void setDate(String date) { this.date = date; }
+    public String getContent() { return content; }
+    public void setContent(String uploader) { this.content = content; }
 }

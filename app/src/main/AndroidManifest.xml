@@ -19,6 +19,12 @@
             android:name=".ui_admin.admin_them_sv"
             android:exported="false" />
         <activity
+            android:name=".ui_admin.admin_creatDoc"
+            android:exported="false" />
+        <activity
+            android:name=".ui_admin.admin_home"
+            android:exported="false" />
+        <activity
             android:name=".ui_admin.admin_quan_ly_tai_khoan"
             android:exported="false" />
         <activity
@@ -31,7 +37,7 @@
             android:exported="false" />
         <activity
             android:name=".ui_admin.admin_creatPost"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".ui.activity_signup"
             android:exported="false" />
@@ -39,7 +45,7 @@
             android:name=".ui.activity_home"
             android:exported="false" />
         <activity
-            android:name=".ui_admin.admin_home"
+            android:name=".ui.activity_login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
