@@ -57,7 +57,7 @@ public class activity_login extends AppCompatActivity {
                     for (UserWithRole userWithRole :userWithRoleList){
                         if (userWithRole.user.getEmail().equals(getEmail) && userWithRole.user.getPassword().equals(getPass)){
                             loginSuccess = true;
-                            int roleId = userWithRole.user.roleId();
+                            int roleId = userWithRole.user.getRoleId();
                             runOnUiThread(()->{
                                 if (roleId == 1){
                                     Intent intent = new Intent(activity_login.this, admin_home.class);

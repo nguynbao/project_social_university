@@ -18,6 +18,7 @@ import com.example.myapplication.data.dao.RoleDao;
 import com.example.myapplication.data.dao.UserDao;
 import com.example.myapplication.data.entity.Role;
 import com.example.myapplication.data.entity.User;
+import com.example.myapplication.data.entity.UserWithRole;
 
 import java.util.concurrent.Executors;
 
@@ -44,10 +45,10 @@ public class admin_quan_ly_tai_khoan extends AppCompatActivity {
         UserDao userDao = AppDatabase.getDatabase(this).userDao();
         Executors.newSingleThreadExecutor().execute(() -> {
             User user = userDao.getUserById(userId);
-            RoleDao roleDao = AppDatabase.getDatabase(this).roleDao();
+//            RoleDao roleDao = AppDatabase.getDatabase(this).roleDao();// Khai báo này làm gì vậy
+            UserWithRole userWithRole = userDao.getUserWithRoleById(userId);
 
             if (user != null) {
-                Role role = roleDao.getRoleById(user.roleId());
                 runOnUiThread(() -> {
                     // Hiển thị dữ liệu lên UI
                    tvUsername = findViewById(R.id.etFullName);
@@ -60,11 +61,7 @@ public class admin_quan_ly_tai_khoan extends AppCompatActivity {
                     tvpass.setText(user.getPassword());
                     tvMssv.setText(user.getMssv());
                     tvMaLop.setText(user.getMaLop());
-                   if (role != null) {
-                       tvrole.setText(role.getRoleName());
-                   }else {
-                       tvrole.setText("Không tìm thấy vai trò");
-                   }
+                    tvrole.setText(userWithRole.role.getRoleName());
                 });
             }
         });

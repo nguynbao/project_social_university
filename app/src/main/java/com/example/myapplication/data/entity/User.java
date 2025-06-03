@@ -106,11 +106,11 @@ public class User {
         this.phone = phone;
     }
 
-    public int roleId() {
+    public int getRoleId() {
         return roleId;
     }
 
-    public void setRole(int roleId) {
+    public void setRoleId(int roleId) {
         this.roleId = roleId;
     }
 }
