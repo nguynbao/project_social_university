@@ -9,10 +9,13 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.example.myapplication.data.dao.DocumentDao;
+
+import com.example.myapplication.data.dao.NotifyDao;
+import com.example.myapplication.data.entity.Notify;
 import com.example.myapplication.data.dao.PostDao;
 import com.example.myapplication.data.dao.RoleDao;
 import com.example.myapplication.data.dao.UserDao;
+import com.example.myapplication.data.dao.DocumentDao;
 import com.example.myapplication.data.entity.Document;
 import com.example.myapplication.data.entity.Post;
 import com.example.myapplication.data.entity.Role;
@@ -20,15 +23,22 @@ import com.example.myapplication.data.entity.User;
 
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, Role.class, Post.class, Document.class}, version = 3)
+
+@Database(entities = {User.class, Role.class, Post.class, Notify.class, Document.class}, version = 4, exportSchema = false)
+
+
+
 public abstract class AppDatabase extends RoomDatabase {
     private static volatile AppDatabase INSTANCE;
 
     public abstract UserDao userDao();
     public abstract RoleDao roleDao();
     public abstract PostDao postDao();
+
+    public abstract NotifyDao notifyDao();
+
     public abstract DocumentDao documentDao();
-    // Thêm các DAO khác nếu có
+
 
     public static AppDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {

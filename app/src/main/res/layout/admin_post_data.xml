@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main"
     android:layout_marginEnd="20dp"
     android:layout_marginStart="20dp">
 
@@ -46,7 +47,7 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/etClassId"
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginTop="76dp"
@@ -62,19 +63,20 @@
         app:layout_constraintTop_toBottomOf="@+id/header" />
 
     <EditText
-        android:id="@+id/etRole"
+        android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
+        android:layout_height="200dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/edt_round_gray"
         android:hint="Nội dung"
+        android:gravity="top"
         android:padding="14dp"
         android:textColor="#8B8B8B"
         android:textColorHint="#AAAAAA"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etClassId" />
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
 
     <androidx.appcompat.widget.AppCompatButton
@@ -89,7 +91,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etRole"
+        app:layout_constraintTop_toBottomOf="@+id/content"
         app:layout_constraintVertical_bias="0.098" />
 
 
