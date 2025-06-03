@@ -81,7 +81,13 @@ public class admin_quan_ly_tai_khoan extends AppCompatActivity {
         String password = tvpass.getText().toString();
         String mssv = tvMssv.getText().toString();
         String maLop = tvMaLop.getText().toString();
-        int role = Integer.parseInt(tvrole.getText().toString());
+        String role = tvrole.getText().toString();
+        int role_ID;
+        if (role.equals("Admin")){
+            role_ID =1;
+        }else {
+            role_ID =2;
+        }
 
         Executors.newSingleThreadExecutor().execute(() -> {
             User updatedUser = new User();
@@ -90,7 +96,7 @@ public class admin_quan_ly_tai_khoan extends AppCompatActivity {
             updatedUser.setPassword(password);
             updatedUser.setMssv(mssv);
             updatedUser.setMaLop(maLop);
-            updatedUser.setRoleId(role);
+            updatedUser.setRoleId(role_ID);
             userDao.update(updatedUser);
 
             runOnUiThread(() -> {

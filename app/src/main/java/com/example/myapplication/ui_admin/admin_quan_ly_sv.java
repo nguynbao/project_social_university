@@ -98,6 +98,7 @@ public class admin_quan_ly_sv extends AppCompatActivity {
         // Kiểm tra và thêm dữ liệu mẫu
         Executors.newSingleThreadExecutor().execute(() -> {
             // Đoạn kiểm tra dữ liệu mẫu vẫn chạy nền
+
             if (userDao.count() == 0) { // Dùng count() thay cho getAllUsers().isEmpty()
                 userDao.insert(new User("Nguyen Van A", "a@gmail.com", "123456", "111111", "123456", "123456", 1));
                 userDao.insert(new User("Tran Thi B", "b@gmail.com", "123456", "222222", "123456", "123456", 2));
