@@ -1,7 +1,6 @@
 package com.example.myapplication.ui_admin;
 
 import android.os.Bundle;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,9 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.myapplication.R;
 import com.example.myapplication.data.AppDatabase;
-import com.example.myapplication.data.dao.RoleDao;
 import com.example.myapplication.data.dao.UserDao;
-import com.example.myapplication.data.entity.Role;
 import com.example.myapplication.data.entity.User;
 import com.example.myapplication.data.entity.UserWithRole;
 
@@ -25,6 +22,8 @@ import java.util.concurrent.Executors;
 public class admin_quan_ly_tai_khoan extends AppCompatActivity {
     private AppCompatButton btnUpload, btnDelete;
     private TextView tvUsername, tvpass, tvMssv, tvMaLop, tvrole;
+    private int userId;
+    private UserDao userDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,27 +35,37 @@ public class admin_quan_ly_tai_khoan extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        int userId = getIntent().getIntExtra("userId", -1);
+
+        userId = getIntent().getIntExtra("userId", -1);
         if (userId == -1) {
-            // Xử lý khi không nhận được id
             finish();
             return;
         }
-        UserDao userDao = AppDatabase.getDatabase(this).userDao();
+
+        userDao = AppDatabase.getDatabase(this).userDao();
+
+        tvUsername = findViewById(R.id.etFullName);
+        tvpass = findViewById(R.id.edtpass);
+        tvMssv = findViewById(R.id.etStudentId);
+        tvMaLop = findViewById(R.id.etClassId);
+        tvrole = findViewById(R.id.edtRole);
+
+        btnUpload = findViewById(R.id.btnUpload);
+        btnDelete = findViewById(R.id.btnDelete);
+
+        loadUserInfo();
+
+        btnUpload.setOnClickListener(v -> updateUser());
+        btnDelete.setOnClickListener(v -> deleteUser());
+    }
+
+    private void loadUserInfo() {
         Executors.newSingleThreadExecutor().execute(() -> {
             User user = userDao.getUserById(userId);
-//            RoleDao roleDao = AppDatabase.getDatabase(this).roleDao();// Khai báo này làm gì vậy
             UserWithRole userWithRole = userDao.getUserWithRoleById(userId);
 
             if (user != null) {
                 runOnUiThread(() -> {
-                    // Hiển thị dữ liệu lên UI
-                   tvUsername = findViewById(R.id.etFullName);
-                   tvMssv = findViewById(R.id.etStudentId);
-                   tvMaLop = findViewById(R.id.etClassId);
-                   tvpass = findViewById(R.id.edtpass);
-                   tvrole = findViewById(R.id.edtRole);
-
                     tvUsername.setText(user.getUsername());
                     tvpass.setText(user.getPassword());
                     tvMssv.setText(user.getMssv());
@@ -65,30 +74,44 @@ public class admin_quan_ly_tai_khoan extends AppCompatActivity {
                 });
             }
         });
-        btnUpload = findViewById(R.id.btnUpload);
-        btnDelete = findViewById(R.id.btnDelete);
-//        btnUpload.setOnClickListener(v -> {
-//            String username = tvUsername.getText().toString();
-//            String password = tvpass.getText().toString();
-//            String mssv = tvMssv.getText().toString();
-//            String maLop = tvMaLop.getText().toString();
-//            int roleint = 2;
-//            String role = tvrole.getText().toString();Executors.newSingleThreadExecutor().execute(() -> {
-//                User updatedUser = new User();
-//                updatedUser.setId(userId); // giữ nguyên ID cũ
-//                updatedUser.setUsername(username);
-//                updatedUser.setPassword(password);
-//                updatedUser.setMssv(mssv);
-//                updatedUser.setMaLop(maLop);
-//                updatedUser.setRole(roleint);
-//
-//                userDao.update(updatedUser);
-//                runOnUiThread(() -> {
-//                    // Optionally hiển thị Toast hoặc quay lại màn hình trước
-//                    Toast.makeText(this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
-//                    finish();
-//                });
-//            });
-//        });
+    }
 
-    }}
+    private void updateUser() {
+        String username = tvUsername.getText().toString();
+        String password = tvpass.getText().toString();
+        String mssv = tvMssv.getText().toString();
+        String maLop = tvMaLop.getText().toString();
+        int role = Integer.parseInt(tvrole.getText().toString());
+
+        Executors.newSingleThreadExecutor().execute(() -> {
+            User updatedUser = new User();
+            updatedUser.setId(userId);
+            updatedUser.setUsername(username);
+            updatedUser.setPassword(password);
+            updatedUser.setMssv(mssv);
+            updatedUser.setMaLop(maLop);
+            updatedUser.setRoleId(role);
+            userDao.update(updatedUser);
+
+            runOnUiThread(() -> {
+                Toast.makeText(this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+                setResult(RESULT_OK);
+                finish();
+            });
+        });
+    }
+
+    private void deleteUser() {
+        Executors.newSingleThreadExecutor().execute(() -> {
+            User user = userDao.getUserById(userId);
+            if (user != null) {
+                userDao.delete(user);
+                runOnUiThread(() -> {
+                    Toast.makeText(this, "Xóa thành công", Toast.LENGTH_SHORT).show();
+                    setResult(RESULT_OK);
+                    finish();
+                });
+            }
+        });
+    }
+}
