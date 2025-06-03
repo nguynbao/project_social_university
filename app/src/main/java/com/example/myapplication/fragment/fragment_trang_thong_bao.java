@@ -19,6 +19,6 @@ public class fragment_trang_thong_bao extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_trang_thong_bao, container, false);
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return view;
     }
 }

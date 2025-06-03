@@ -17,7 +17,7 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="311dp"
-        android:layout_height="120dp"
+        android:layout_height="70dp"
         android:background="@drawable/thame_header_gray"
         android:gravity="center"
         android:orientation="horizontal"
@@ -28,7 +28,8 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_home" />
+            android:src="@drawable/icon_home"
+            app:tint="@color/black" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -41,7 +42,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
