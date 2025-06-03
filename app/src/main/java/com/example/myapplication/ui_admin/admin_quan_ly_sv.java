@@ -12,10 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.adapter_sinh_vien;
+import com.example.myapplication.data.dao.UserDao;
 import com.example.myapplication.data.entity.User;
+import com.example.myapplication.data.AppDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
 
 public class admin_quan_ly_sv extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -32,11 +35,28 @@ public class admin_quan_ly_sv extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        userList = new ArrayList<>();
-        recyclerView = findViewById(R.id.recyclerViewSV);
-        adapter = new adapter_sinh_vien(userList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+        recyclerView = findViewById(R.id.recyclerViewSV1);
 
-    }
-}
+
+
+        Executors.newSingleThreadExecutor().execute(() -> {
+            UserDao userDao = AppDatabase.getDatabase(this).userDao();
+            // Thêm dữ liệu mẫu nếu database trống
+            if (userDao.getAllUsers().isEmpty()) {
+                userDao.insert(new User("Nguyen Van A", "a@gmail.com", "123456", "123456", "123456", "123456", 1));
+                userDao.insert(new User("Tran Thi B", "b@gmail.com", "123456", "123456", "123456", "123456", 2));
+                userDao.insert(new User("Le Van C", "c@gmail.com", "123456", "123456", "123456", "123456", 1));
+                userDao.insert(new User("Pham Thi D", "d@gmail.com", "123456", "123456", "123456", "123456", 2));
+                userDao.insert(new User("Hoang Van E", "e@gmail.com", "123456", "123456", "123456", "123456", 1));
+            }
+
+            // Lấy danh sách user từ database
+            List<User> userList = userDao.getAllUsers();
+
+            runOnUiThread(() -> {
+                adapter = new adapter_sinh_vien(userList);
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                recyclerView.setAdapter(adapter);
+            });
+        });
+    }}

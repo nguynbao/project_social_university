@@ -3,7 +3,8 @@ package com.example.myapplication.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,8 +20,8 @@ public class adapter_sinh_vien extends RecyclerView.Adapter<adapter_sinh_vien.Vi
     public adapter_sinh_vien(List<User> userList) {
         this.userList = userList;
     }
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        EditText etName;
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView etName;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             etName = itemView.findViewById(R.id.name);
@@ -39,7 +40,7 @@ public class adapter_sinh_vien extends RecyclerView.Adapter<adapter_sinh_vien.Vi
         User user = userList.get(position);
         holder.etName.setText(user.getUsername());
         holder.etName.setOnClickListener(v -> {
-
+            Toast.makeText(holder.itemView.getContext(), user.getEmail(), Toast.LENGTH_SHORT).show();
         });
 
     }
