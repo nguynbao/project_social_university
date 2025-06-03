@@ -1,6 +1,11 @@
 package com.example.myapplication.ui_admin;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +28,9 @@ import java.util.concurrent.Executors;
 public class admin_quan_ly_sv extends AppCompatActivity {
     RecyclerView recyclerView;
     adapter_sinh_vien adapter;
-    List<User> userList;
+   AutoCompleteTextView search;
+    UserDao userDao;
+    List<User> fullUserList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,27 +43,65 @@ public class admin_quan_ly_sv extends AppCompatActivity {
             return insets;
         });
         recyclerView = findViewById(R.id.recyclerViewSV1);
-
-
-
+        search = findViewById(R.id.search_sv);
+        userDao = AppDatabase.getDatabase(this).userDao();
         Executors.newSingleThreadExecutor().execute(() -> {
-            UserDao userDao = AppDatabase.getDatabase(this).userDao();
             // Thêm dữ liệu mẫu nếu database trống
             if (userDao.getAllUsers().isEmpty()) {
-                userDao.insert(new User("Nguyen Van A", "a@gmail.com", "123456", "123456", "123456", "123456", 1));
-                userDao.insert(new User("Tran Thi B", "b@gmail.com", "123456", "123456", "123456", "123456", 2));
-                userDao.insert(new User("Le Van C", "c@gmail.com", "123456", "123456", "123456", "123456", 1));
-                userDao.insert(new User("Pham Thi D", "d@gmail.com", "123456", "123456", "123456", "123456", 2));
-                userDao.insert(new User("Hoang Van E", "e@gmail.com", "123456", "123456", "123456", "123456", 1));
+                userDao.insert(new User("Nguyen Van A", "a@gmail.com", "123456", "111111", "123456", "123456", 1));
+                userDao.insert(new User("Tran Thi B", "b@gmail.com", "123456", "222222", "123456", "123456", 2));
+                userDao.insert(new User("Le Van C", "c@gmail.com", "123456", "333333", "123456", "123456", 1));
+                userDao.insert(new User("Pham Thi D", "d@gmail.com", "123456", "444444", "123456", "123456", 2));
+                userDao.insert(new User("Hoang Van E", "e@gmail.com", "123456", "555555", "123456", "123456", 1));
             }
 
             // Lấy danh sách user từ database
-            List<User> userList = userDao.getAllUsers();
+            fullUserList = userDao.getAllUsers();
 
             runOnUiThread(() -> {
-                adapter = new adapter_sinh_vien(userList);
+                // Khởi tạo Adapter RecyclerView với toàn bộ danh sách ban đầu
+                adapter = new adapter_sinh_vien(fullUserList);
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
                 recyclerView.setAdapter(adapter);
+
+                // Thiết lập gợi ý cho AutoCompleteTextView
+                List<String> userDisplayList = new ArrayList<>();
+                for (User user : fullUserList) {
+                    userDisplayList.add(user.getMssv());
+                }
+                ArrayAdapter<String> adaptersv = new ArrayAdapter<>(
+                        this,
+                        android.R.layout.simple_dropdown_item_1line,
+                        userDisplayList
+                );
+                search.setAdapter(adaptersv);
             });
         });
-    }}
+
+        // Xử lý tìm kiếm khi người dùng nhập dữ liệu
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String query = s.toString().trim();
+                Executors.newSingleThreadExecutor().execute(() -> {
+                    List<User> filteredUsers;
+                    if (query.isEmpty()) {
+                        filteredUsers = userDao.getAllUsers(); // Hiển thị tất cả khi ô tìm kiếm trống
+                    } else {
+                        filteredUsers = userDao.searchUsers("%" + query + "%");
+                    }
+
+                    runOnUiThread(() -> {
+                        adapter.setData(filteredUsers);
+                    });
+                });
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) { }
+        });
+    }
+}

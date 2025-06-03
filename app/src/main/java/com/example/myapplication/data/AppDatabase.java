@@ -16,7 +16,7 @@ import com.example.myapplication.data.entity.User;
 
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, Role.class}, version = 3)
+@Database(entities = {User.class, Role.class}, version = 4)
 public abstract class AppDatabase extends RoomDatabase {
     private static volatile AppDatabase INSTANCE;
 

@@ -17,5 +17,7 @@ public interface RoleDao {
     List<Role> getAllRoles();
     @Query("SELECT COUNT(*) FROM role_table")
     int count();
+    @Query("SELECT * FROM role_table WHERE id = :roleId")
+    Role getRoleById(int roleId);
 
 }

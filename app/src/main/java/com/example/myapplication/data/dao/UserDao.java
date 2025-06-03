@@ -45,4 +45,9 @@ public interface UserDao {
 
     @Query("SELECT COUNT(*) FROM user_table")
     int count();
+    @Query("SELECT * FROM user_table " +
+            "WHERE mssv LIKE '%' || :query || '%' " +
+            "OR username LIKE '%' || :query || '%' " +
+            "OR email LIKE '%' || :query || '%'")
+    List<User> searchUsers(String query);
 }

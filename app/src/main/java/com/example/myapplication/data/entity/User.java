@@ -26,6 +26,9 @@ public class User {
     @ColumnInfo(name = "role_id")
     private int roleId; // có thể dùng String hoặc int tùy bạn
 
+    public User() {
+
+    }
     // Constructor có tham số - tên tham số phải đúng với tên field
 
     public User(String username, String email, String password, String mssv, String maLop, String phone, int roleId) {
