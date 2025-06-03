@@ -38,6 +38,7 @@ public class activity_login extends AppCompatActivity {
         password = findViewById(R.id.pass);
         login = findViewById(R.id.btn_login);
         signup = findViewById(R.id.btn_signup);
+        signup.setOnClickListener(v -> startActivity(new Intent(this, activity_signup.class)));
         userDao =  AppDatabase.getDatabase(getApplicationContext()).userDao();
         login.setOnClickListener(v -> {
             String emailText = email.getText().toString().trim();

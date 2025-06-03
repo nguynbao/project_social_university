@@ -1,6 +1,7 @@
 package com.example.myapplication.data.entity;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "user_table")
@@ -9,21 +10,31 @@ public class User {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    private String username;
+    private String username;  // Họ tên sinh viên
     private String email;
     private String password;
-    private int role;  // có thể dùng String hoặc int tùy bạn
+    private String mssv;
+    private String maLop;
+    private String phone;
+    private String role; // có thể dùng String hoặc int tùy bạn
 
     // Constructor có tham số - tên tham số phải đúng với tên field
-    public User(String username, String email, String password, int role) {
+
+    public User(String username, String email, String password, String mssv, String maLop, String phone, String role) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.mssv = mssv;
+        this.maLop = maLop;
+        this.phone = phone;
         this.role = role;
     }
 
     // Constructor mặc định bắt buộc cho Room
-    public User() {
+    @Ignore
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
     }
 
     // Getter và Setter
@@ -60,11 +71,35 @@ public class User {
         this.password = password;
     }
 
-    public int getRole() {
+    public String getMssv() {
+        return mssv;
+    }
+
+    public void setMssv(String mssv) {
+        this.mssv = mssv;
+    }
+
+    public String getMaLop() {
+        return maLop;
+    }
+
+    public void setMaLop(String maLop) {
+        this.maLop = maLop;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(String role) {
         this.role = role;
     }
 }
