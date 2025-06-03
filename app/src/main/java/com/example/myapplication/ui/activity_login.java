@@ -2,7 +2,6 @@ package com.example.myapplication.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -25,7 +24,6 @@ public class activity_login extends AppCompatActivity {
     private EditText email, password;
     private AppCompatButton login, signup;
     private UserDao userDao;
-    private final String nameadmin = "Vuong", emailadmin = "admin@gmail.com", passwordadmin = "123456", mass = "", lop = "", sdt = "", role = "admin";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,57 +35,10 @@ public class activity_login extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
         email = findViewById(R.id.email);
         password = findViewById(R.id.pass);
         login = findViewById(R.id.btn_login);
         signup = findViewById(R.id.btn_signup);
 
-        signup.setOnClickListener(v -> startActivity(new Intent(this, activity_signup.class)));
-
-        userDao = AppDatabase.getDatabase(getApplicationContext()).userDao();
-        // Tạo admin nếu chưa có
-        new Thread(() -> {
-            Log.d("ADMIN_CREATION", "Checking admin user...");
-            User admin = new User(nameadmin, emailadmin, passwordadmin, mass, lop, sdt, role);
-            User existingAdmin = userDao.findUserByEmail(emailadmin);
-            if (existingAdmin == null) {
-                Log.d("ADMIN_CREATION", "Admin not found. Inserting admin...");
-                userDao.insert(admin);
-                runOnUiThread(() ->
-                        Toast.makeText(this, "Tạo tài khoản admin thành công", Toast.LENGTH_SHORT).show());
-            } else {
-                Log.d("ADMIN_CREATION", "Admin already exists!" +emailadmin + passwordadmin + role);
-            }
-
-        }).start();
-
-        login.setOnClickListener(v -> {
-            String emailText = email.getText().toString().trim();
-            String passwordText = password.getText().toString().trim();
-
-            if (emailText.isEmpty() || passwordText.isEmpty()) {
-                Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
-            } else {
-                Executors.newSingleThreadExecutor().execute(() -> {
-                    User user = userDao.login(emailText, passwordText);
-                    runOnUiThread(() -> {
-                        if (user != null) {
-                            Toast.makeText(this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-                            if ("admin".equalsIgnoreCase(user.getRole())) {
-                                startActivity(new Intent(activity_login.this, admin_home.class));
-                            } else {
-                                Intent intent = new Intent(activity_login.this, activity_home.class);
-                                intent.putExtra("user_id", user.getId());
-                                startActivity(intent);
-                            }
-                            finish();
-                        } else {
-                            Toast.makeText(this, "Email hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                });
-            }
-        });
     }
 }
