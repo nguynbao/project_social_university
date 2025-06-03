@@ -20,7 +20,7 @@
             android:src="@drawable/img_user" />
 
         <TextView
-            android:id="@+id/nameClub"
+            android:id="@+id/clubName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -30,19 +30,21 @@
             android:textSize="20sp" />
     </LinearLayout>
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgPost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/bg_bai_dang"
-        android:src="@drawable/img_bai_dang"
+        android:background="@drawable/edt_round_gray"
+        android:adjustViewBounds="false"
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@drawable/edt_round_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     <TextView
-        android:id="@+id/content"
+        android:id="@+id/contentPost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -55,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imgPost" />
 
     <TextView
-        android:id="@+id/time"
+        android:id="@+id/timePost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -63,16 +65,16 @@
         android:text="Thời gian đăng kí:"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/content" />
+        app:layout_constraintTop_toBottomOf="@+id/contentPost" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/submit"
+        android:id="@+id/subcribePost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Đăng kí ngay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.904"
-        app:layout_constraintStart_toEndOf="@+id/time"
-        app:layout_constraintTop_toBottomOf="@+id/content" />
+        app:layout_constraintStart_toEndOf="@+id/timePost"
+        app:layout_constraintTop_toBottomOf="@+id/contentPost" />
 </androidx.constraintlayout.widget.ConstraintLayout>

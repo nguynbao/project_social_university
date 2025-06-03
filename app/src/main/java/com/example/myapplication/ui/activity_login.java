@@ -26,7 +26,7 @@ import java.util.concurrent.Executors;
 
 public class activity_login extends AppCompatActivity {
     private EditText email, password;
-    private AppCompatButton login, signup;
+    private AppCompatButton login;
     private UserDao userDao;
 
 
@@ -43,7 +43,6 @@ public class activity_login extends AppCompatActivity {
         email = findViewById(R.id.email);
         password = findViewById(R.id.pass);
         login = findViewById(R.id.btn_login);
-        signup = findViewById(R.id.btn_signup);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
