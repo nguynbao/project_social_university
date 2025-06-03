@@ -36,7 +36,7 @@ public class admin_them_sv extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        imgBack = findViewById(R.id.img_back);
+        imgBack = findViewById(R.id.img_backtsv);
         imgBack.setOnClickListener(v -> finish());
         userDao = AppDatabase.getDatabase(this).userDao();
         etFullName = findViewById(R.id.edtFullNamead);

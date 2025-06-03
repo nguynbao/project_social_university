@@ -32,7 +32,7 @@ public class adapter_document extends RecyclerView.Adapter<adapter_document.View
     public int getItemCount() {
         return 0;
     }
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public ViewHolder(View itemView) {
             super(itemView);
         }

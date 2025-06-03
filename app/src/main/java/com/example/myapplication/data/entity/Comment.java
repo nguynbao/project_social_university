@@ -7,7 +7,6 @@ import androidx.room.PrimaryKey;
 public class Comment {
     @PrimaryKey(autoGenerate = true)
     private int id;
-
     private int postId;
     private int userId;
     private String content;

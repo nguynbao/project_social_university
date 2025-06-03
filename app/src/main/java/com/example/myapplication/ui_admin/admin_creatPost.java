@@ -40,7 +40,7 @@ public class admin_creatPost extends AppCompatActivity {
     EditText edtNameClub, etPostDescription;
     TextView edttimeSelection;
     Button btnUpload;
-    ImageView timeSelection, imgUpload;
+    ImageView timeSelection, imgUpload, imgBack;
     String imagePath_Uri, nameClub, content, deadline;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +62,8 @@ public class admin_creatPost extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_CODE_IMAGE);
             }
         });
+        imgBack = findViewById(R.id.img_backcp);
+        imgBack.setOnClickListener(v -> finish());
 
         btnUpload.setOnClickListener(v-> createPost());
 
