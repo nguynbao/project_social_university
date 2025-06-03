@@ -25,6 +25,9 @@ import com.example.myapplication.data.AppDatabase;
 import com.example.myapplication.data.dao.PostDao;
 import com.example.myapplication.data.entity.Post;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -74,8 +77,7 @@ public class admin_creatPost extends AppCompatActivity {
         nameClub = edtNameClub.getText().toString();
         content = etPostDescription.getText().toString();
         deadline = edttimeSelection.getText().toString();
-        String imagePath = imagePath_Uri;
-        Post post = new Post(nameClub, content, deadline, imagePath);
+        Post post = new Post(nameClub, content, deadline, imagePath_Uri);
         Executors.newSingleThreadExecutor().execute(()->{
             AppDatabase db = AppDatabase.getDatabase(getApplicationContext());
             PostDao postDao = db.postDao();
@@ -137,8 +139,42 @@ public class admin_creatPost extends AppCompatActivity {
             selectedImageUri = data.getData();
             if (selectedImageUri != null) {
                 imgUpload.setImageURI(selectedImageUri); // hiển thị ảnh vừa chọn
-                imagePath_Uri = String.valueOf(selectedImageUri);
+                // Tạo tên file
+                String fileName = "img_" + System.currentTimeMillis() + ".jpg";
+
+                // Copy ảnh về bộ nhớ trong
+                String localPath = copyFileToInternalStorage(selectedImageUri, fileName);
+                if (localPath != null) {
+                    imagePath_Uri = localPath; // Gán vào biến để sau này lưu vào Room
+                    Toast.makeText(this, "Đã lưu ảnh vào: " + localPath, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Lỗi khi sao chép ảnh", Toast.LENGTH_SHORT).show();
+                }
             }
+        }
+    }
+
+    private String copyFileToInternalStorage(Uri uri, String fileName) {
+        try {
+            InputStream inputStream = getContentResolver().openInputStream(uri);
+            if (inputStream == null) return null;
+
+            File file = new File(getFilesDir(), fileName);
+            FileOutputStream outputStream = new FileOutputStream(file);
+
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, length);
+            }
+
+            outputStream.close();
+            inputStream.close();
+
+            return file.getAbsolutePath();  // Trả về đường dẫn kiểu: /data/data/your.package.name/files/xxx.jpg
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

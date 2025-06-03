@@ -29,6 +29,8 @@ public class admin_creatDoc extends AppCompatActivity {
     ImageView uploadDoc;
     Button btnUpload;
     String title, fileUrl, content;
+
+
     private static final int PICK_FILE_REQUEST = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class admin_creatDoc extends AppCompatActivity {
 
     private void uploadDocFunction() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("*/*");
+        intent.setType("image/*");
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         startActivityForResult(Intent.createChooser(intent, "Chọn tệp tài liệu"), PICK_FILE_REQUEST);
     }

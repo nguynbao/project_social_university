@@ -24,7 +24,7 @@ import com.example.myapplication.data.entity.User;
 import java.util.concurrent.Executors;
 
 
-@Database(entities = {User.class, Role.class, Post.class, Notify.class, Document.class}, version = 4, exportSchema = false)
+@Database(entities = {User.class, Role.class, Post.class, Notify.class, Document.class}, version = 1, exportSchema = false)
 
 
 
