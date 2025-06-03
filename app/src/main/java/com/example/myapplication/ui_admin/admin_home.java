@@ -39,6 +39,7 @@ public class admin_home extends AppCompatActivity {
         });
         layoutUploadDoc.setOnClickListener(v -> {
             Toast.makeText(this, "Đăng tải tài liệu", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, admin_creatDoc.class));
         });
         layoutCreateNotification.setOnClickListener(v -> {
             Toast.makeText(this, "Tạo thông báo", Toast.LENGTH_SHORT).show();

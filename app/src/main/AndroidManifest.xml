@@ -13,6 +13,12 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name=".ui_admin.admin_creatDoc"
+            android:exported="false" />
+        <activity
+            android:name=".ui_admin.admin_home"
+            android:exported="false" />
+        <activity
             android:name=".ui_admin.admin_quan_ly_tai_khoan"
             android:exported="false" />
         <activity
@@ -33,7 +39,7 @@
             android:name=".ui.activity_home"
             android:exported="false" />
         <activity
-            android:name=".ui_admin.admin_home"
+            android:name=".ui.activity_login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

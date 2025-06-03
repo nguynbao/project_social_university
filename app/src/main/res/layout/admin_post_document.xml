@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#1A1A1A1A">
+    android:background="#1A1A1A1A"
+    android:id="@+id/main">
 
     <!-- Form Content -->
 
@@ -70,7 +71,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/etClubName"
+                android:id="@+id/edtClubName"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginBottom="16dp"
@@ -92,7 +93,7 @@
 
             <!-- Tài liệu đăng tải -->
             <EditText
-                android:id="@+id/etPostDescription"
+                android:id="@+id/edtPostDescription"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:layout_marginBottom="16dp"
@@ -124,6 +125,7 @@
                 android:focusable="true">
 
                 <ImageView
+                    android:id="@+id/uploadDoc"
                     android:layout_width="102dp"
                     android:layout_height="82dp"
                     android:src="@drawable/createadmin"/>
