@@ -1,10 +1,17 @@
 package com.example.myapplication.data.entity;
 
+import static androidx.room.ForeignKey.*;
+
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "user_table")
+@Entity(tableName = "user_table", foreignKeys = @ForeignKey(entity = Role.class,
+                                                                parentColumns = "id",
+                                                                childColumns = "role_id",
+                                                                onDelete = ForeignKey.CASCADE))
 public class User {
 
     @PrimaryKey(autoGenerate = true)
@@ -16,18 +23,19 @@ public class User {
     private String mssv;
     private String maLop;
     private String phone;
-    private String role; // có thể dùng String hoặc int tùy bạn
+    @ColumnInfo(name = "role_id")
+    private int roleId; // có thể dùng String hoặc int tùy bạn
 
     // Constructor có tham số - tên tham số phải đúng với tên field
 
-    public User(String username, String email, String password, String mssv, String maLop, String phone, String role) {
+    public User(String username, String email, String password, String mssv, String maLop, String phone, int roleId) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.mssv = mssv;
         this.maLop = maLop;
         this.phone = phone;
-        this.role = role;
+        this.roleId = roleId;
     }
 
     // Constructor mặc định bắt buộc cho Room
@@ -95,11 +103,11 @@ public class User {
         this.phone = phone;
     }
 
-    public String getRole() {
-        return role;
+    public int roleId() {
+        return roleId;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRole(int roleId) {
+        this.roleId = roleId;
     }
 }
