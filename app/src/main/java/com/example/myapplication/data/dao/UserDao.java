@@ -42,6 +42,7 @@ public interface UserDao {
     @Transaction
     @Query("SELECT * FROM user_table WHERE id = :userId")
     UserWithRole getUserWithRoleById(int userId);
+
     @Query("SELECT COUNT(*) FROM user_table")
     int count();
 }
