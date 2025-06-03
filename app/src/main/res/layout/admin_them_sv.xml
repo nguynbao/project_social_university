@@ -7,7 +7,6 @@
     android:layout_marginEnd="20dp"
     android:layout_marginStart="20dp"
     android:id="@+id/main">
-
     <ImageView
         android:id="@+id/img_back"
         android:layout_width="30dp"
@@ -48,7 +47,7 @@
             android:layout_width="187dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Quản lý tài khoản"
+            android:text="Thêm tài khoản"
             android:textColor="#1A1A1A"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -95,7 +94,7 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/edtFullName"
+                android:id="@+id/edtFullNamead"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edt_round_gray"
@@ -104,9 +103,19 @@
                 android:textColor="#8B8B8B"
                 android:textColorHint="#AAAAAA"
                 android:textSize="14sp" />
-
             <EditText
-                android:id="@+id/edtStudentId"
+                android:id="@+id/edtEmailad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/edt_round_gray"
+                android:hint="Email"
+                android:padding="14dp"
+                android:textColor="#8B8B8B"
+                android:textColorHint="#AAAAAA"
+                android:textSize="14sp" />
+            <EditText
+                android:id="@+id/edtStudentIdad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -116,9 +125,8 @@
                 android:textColor="#8B8B8B"
                 android:textColorHint="#AAAAAA"
                 android:textSize="14sp" />
-
             <EditText
-                android:id="@+id/edtPass"
+                android:id="@+id/edtPassad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -131,7 +139,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/edtClassId"
+                android:id="@+id/edtClassIdad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -143,7 +151,18 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/edtRole"
+                android:id="@+id/edtPhonead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/edt_round_gray"
+                android:hint="Số điện thoại"
+                android:padding="14dp"
+                android:textColor="#8B8B8B"
+                android:textColorHint="#AAAAAA"
+                android:textSize="14sp" />
+            <EditText
+                android:id="@+id/edtRolead"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -153,13 +172,11 @@
                 android:textColor="#8B8B8B"
                 android:textColorHint="#AAAAAA"
                 android:textSize="14sp" />
-
-
         </LinearLayout>
     </ScrollView>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnUpload"
+        android:id="@+id/btnSavead"
         android:layout_width="164dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -170,27 +187,10 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.077"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView2"
         app:layout_constraintVertical_bias="0.462" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnDelete"
-        android:layout_width="164dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/btn_round_red"
-        android:text="Xóa"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.918"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
