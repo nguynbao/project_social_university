@@ -70,20 +70,22 @@ public class admin_quan_ly_tai_khoan extends AppCompatActivity {
                     tvpass.setText(user.getPassword());
                     tvMssv.setText(user.getMssv());
                     tvMaLop.setText(user.getMaLop());
-                    tvrole.setText(userWithRole.role.getRoleName());
+                    tvrole.setText(String.valueOf(userWithRole.role.getId()));
                 });
             }
         });
     }
 
     private void updateUser() {
+
         String username = tvUsername.getText().toString();
         String password = tvpass.getText().toString();
         String mssv = tvMssv.getText().toString();
         String maLop = tvMaLop.getText().toString();
-        int role = Integer.parseInt(tvrole.getText().toString());
+        int role = Integer.parseInt(String.valueOf(tvrole.getText()));
 
         Executors.newSingleThreadExecutor().execute(() -> {
+            UserWithRole userWithRole = userDao.getUserWithRoleById(userId);
             User updatedUser = new User();
             updatedUser.setId(userId);
             updatedUser.setUsername(username);
@@ -92,7 +94,6 @@ public class admin_quan_ly_tai_khoan extends AppCompatActivity {
             updatedUser.setMaLop(maLop);
             updatedUser.setRoleId(role);
             userDao.update(updatedUser);
-
             runOnUiThread(() -> {
                 Toast.makeText(this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
                 setResult(RESULT_OK);
