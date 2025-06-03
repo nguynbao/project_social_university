@@ -15,7 +15,7 @@ public interface NotifyDao {
     void insert(Notify notify);
     @Delete
     void delete(Notify notify);
-    @Query("SELECT * FROM notify_table")
+    @Query("SELECT * FROM notify_table ORDER BY id DESC")
     LiveData<List<Notify>> getAllNotifies();
 
 }
