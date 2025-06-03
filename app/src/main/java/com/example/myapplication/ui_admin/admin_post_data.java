@@ -8,6 +8,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -27,6 +28,7 @@ import java.util.concurrent.Executors;
 public class admin_post_data extends AppCompatActivity {
     private AppCompatButton btnUpload;
     private EditText content, title;
+    ImageView back;
     NotifyDao notifyDao;
 
     private static final int REQUEST_CODE_POST_NOTIFICATIONS = 1001;
@@ -41,7 +43,10 @@ public class admin_post_data extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        back = findViewById(R.id.img_backpd);
+        back.setOnClickListener(v -> {
+            finish();
+        });
         notifyDao = AppDatabase.getDatabase(this).notifyDao();
         btnUpload = findViewById(R.id.btnUpload);
         content = findViewById(R.id.content);

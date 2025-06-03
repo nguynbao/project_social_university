@@ -51,7 +51,7 @@ public class admin_quan_ly_sv extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerViewSV1);
         search = findViewById(R.id.search_sv);
         userDao = AppDatabase.getDatabase(this).userDao();
-        back = findViewById(R.id.img_back);
+        back = findViewById(R.id.img_backsv);
         back.setOnClickListener(v -> {
             finish();
         });

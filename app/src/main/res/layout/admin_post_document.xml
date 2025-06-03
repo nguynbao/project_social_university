@@ -9,7 +9,16 @@
     android:id="@+id/main">
 
     <!-- Form Content -->
-
+    <ImageView
+        android:id="@+id/img_backcd"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/icon_back"
+        app:layout_constraintEnd_toStartOf="@+id/header"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="253dp"

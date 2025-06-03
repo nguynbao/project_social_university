@@ -8,7 +8,7 @@
     android:layout_marginStart="20dp"
     android:id="@+id/main">
     <ImageView
-        android:id="@+id/img_back"
+        android:id="@+id/img_backtsv"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="16dp"

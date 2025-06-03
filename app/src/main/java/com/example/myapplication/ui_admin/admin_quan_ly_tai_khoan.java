@@ -45,7 +45,7 @@ public class admin_quan_ly_tai_khoan extends AppCompatActivity {
         }
 
         userDao = AppDatabase.getDatabase(this).userDao();
-        imgBack = findViewById(R.id.img_back);
+        imgBack = findViewById(R.id.img_backtk);
         tvUsername = findViewById(R.id.edtFullName);
         tvpass = findViewById(R.id.edtPass);
         tvMssv = findViewById(R.id.edtStudentId);
