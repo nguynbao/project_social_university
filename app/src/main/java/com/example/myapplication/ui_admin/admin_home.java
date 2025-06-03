@@ -42,6 +42,7 @@ public class admin_home extends AppCompatActivity {
         });
         layoutCreateNotification.setOnClickListener(v -> {
             Toast.makeText(this, "Tạo thông báo", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, admin_post_data.class));
         });
 
 
