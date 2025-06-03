@@ -1,6 +1,7 @@
 package com.example.myapplication.ui_admin;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import java.util.concurrent.Executors;
 public class admin_quan_ly_tai_khoan extends AppCompatActivity {
     private AppCompatButton btnUpload, btnDelete;
     private TextView tvUsername, tvpass, tvMssv, tvMaLop, tvrole;
+    private ImageView imgBack;
     private int userId;
     private UserDao userDao;
 
@@ -43,17 +45,18 @@ public class admin_quan_ly_tai_khoan extends AppCompatActivity {
         }
 
         userDao = AppDatabase.getDatabase(this).userDao();
-
-        tvUsername = findViewById(R.id.etFullName);
-        tvpass = findViewById(R.id.edtpass);
-        tvMssv = findViewById(R.id.etStudentId);
-        tvMaLop = findViewById(R.id.etClassId);
+        imgBack = findViewById(R.id.img_back);
+        tvUsername = findViewById(R.id.edtFullName);
+        tvpass = findViewById(R.id.edtPass);
+        tvMssv = findViewById(R.id.edtStudentId);
+        tvMaLop = findViewById(R.id.edtClassId);
         tvrole = findViewById(R.id.edtRole);
 
         btnUpload = findViewById(R.id.btnUpload);
         btnDelete = findViewById(R.id.btnDelete);
 
         loadUserInfo();
+        imgBack.setOnClickListener(v -> finish());
 
         btnUpload.setOnClickListener(v -> updateUser());
         btnDelete.setOnClickListener(v -> deleteUser());
@@ -98,7 +101,6 @@ public class admin_quan_ly_tai_khoan extends AppCompatActivity {
             updatedUser.setMaLop(maLop);
             updatedUser.setRoleId(role_ID);
             userDao.update(updatedUser);
-
             runOnUiThread(() -> {
                 Toast.makeText(this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
                 setResult(RESULT_OK);
