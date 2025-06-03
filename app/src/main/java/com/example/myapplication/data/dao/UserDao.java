@@ -1,5 +1,6 @@
 package com.example.myapplication.data.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -25,7 +26,7 @@ public interface UserDao {
     void delete(User user);
 
     @Query("SELECT * FROM user_table ORDER BY id ASC")
-    List<User> getAllUsers();
+    LiveData<List<User>> getAllUsers();
 
     @Query("SELECT * FROM user_table WHERE id = :userId")
     User getUserById(int userId);
@@ -45,4 +46,9 @@ public interface UserDao {
 
     @Query("SELECT COUNT(*) FROM user_table")
     int count();
+    @Query("SELECT * FROM user_table " +
+            "WHERE mssv LIKE '%' || :query || '%' " +
+            "OR username LIKE '%' || :query || '%' " +
+            "OR email LIKE '%' || :query || '%'")
+    LiveData<List<User>> searchUsers(String query);
 }

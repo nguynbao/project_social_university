@@ -61,14 +61,13 @@
             android:paddingTop="18dp"
             android:paddingBottom="83dp">
 
-        <!-- Input 1: Lọc MSSV chờ duyệt -->
-        <Spinner
-            android:id="@+id/etFilter1"
+        <AutoCompleteTextView
+            android:id="@+id/search_sv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:background="@drawable/edt_round_gray"
-            android:hint="Tất cả sinh viên"
+            android:hint="Tìm kiếm sinh viên"
             android:paddingVertical="13dp"
             android:paddingLeft="19dp"
             android:paddingRight="38dp"
