@@ -31,7 +31,6 @@ public class adapter_noti extends RecyclerView.Adapter<adapter_noti.ViewHolder> 
     @Override
     public adapter_noti.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_noti, parent, false);
-
         return new ViewHolder(view);
     }
 
@@ -46,7 +45,7 @@ public class adapter_noti extends RecyclerView.Adapter<adapter_noti.ViewHolder> 
     public int getItemCount() {
         return notifyList.size();
     }
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvTitle, tvContent;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

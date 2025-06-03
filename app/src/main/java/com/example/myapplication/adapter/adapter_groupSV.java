@@ -30,7 +30,7 @@ public class adapter_groupSV extends RecyclerView.Adapter<adapter_groupSV.ViewHo
     public int getItemCount() {
         return 0;
     }
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public ViewHolder(View itemView) {
             super(itemView);
         }
