@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/main">
 
     <!-- Header -->
     <LinearLayout
@@ -28,8 +29,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginEnd="8dp"
-            android:src="@drawable/userimg"
-            android:tint="#1A1A1A" />
+            android:src="@drawable/userimg"/>
 
         <TextView
             android:layout_width="187dp"
@@ -62,13 +62,13 @@
             android:paddingBottom="83dp">
 
         <!-- Input 1: Lọc MSSV chờ duyệt -->
-        <EditText
+        <Spinner
             android:id="@+id/etFilter1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:background="@drawable/edt_round_gray"
-            android:hint="Lọc MSSV chờ duyệt"
+            android:hint="Tất cả sinh viên"
             android:paddingVertical="13dp"
             android:paddingLeft="19dp"
             android:paddingRight="38dp"
@@ -76,33 +76,12 @@
             android:textColorHint="#AAAAAA"
             android:textSize="20sp" />
 
-        <!-- Box 1 -->
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="212dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/edt_round_gray" />
-
-        <!-- Input 2: Lọc MSSV chờ duyệ -->
-        <EditText
-            android:id="@+id/etFilter2"
-            android:layout_width="match_parent"
-            android:layout_height="57dp"
-            android:layout_marginBottom="30dp"
-            android:background="@drawable/edt_round_gray"
-            android:hint="Lọc MSSV chờ duyệ"
-            android:paddingVertical="13dp"
-            android:paddingLeft="19dp"
-            android:paddingRight="38dp"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#AAAAAA"
-            android:textSize="20sp" />
-
-        <!-- Box 2 -->
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="260dp"
-            android:background="@drawable/edt_round_gray" />
+           <androidx.recyclerview.widget.RecyclerView
+               android:layout_marginBottom="30dp"
+               android:id="@+id/recyclerViewSV"
+               android:layout_width="match_parent"
+               android:layout_height="300dp"
+               android:background="@drawable/edt_round_gray"/>
 
     </LinearLayout>
 

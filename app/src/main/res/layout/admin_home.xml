@@ -98,8 +98,7 @@
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/useradmin"
-                android:tint="#FFFFFF" />
+                android:src="@drawable/useradmin"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -126,8 +125,7 @@
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/createadmin"
-                android:tint="#FFFFFF" />
+                android:src="@drawable/createadmin" />
 
             <TextView
                 android:layout_width="wrap_content"
