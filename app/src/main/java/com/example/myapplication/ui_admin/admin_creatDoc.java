@@ -26,8 +26,9 @@ import java.util.concurrent.Executors;
 
 public class admin_creatDoc extends AppCompatActivity {
     EditText edtPostDescription, edtClubName;
-    ImageView uploadDoc;
+    ImageView uploadDoc, imgBack;
     Button btnUpload;
+
     String title, fileUrl, content;
     private static final int PICK_FILE_REQUEST = 1;
     @Override
@@ -41,6 +42,8 @@ public class admin_creatDoc extends AppCompatActivity {
         uploadDoc.setOnClickListener(v -> uploadDocFunction());
         btnUpload = findViewById(R.id.btnUpload);
         btnUpload.setOnClickListener(v-> createDoc());
+        imgBack = findViewById(R.id.img_backcd);
+        imgBack.setOnClickListener(v -> finish());
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
