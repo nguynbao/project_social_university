@@ -78,7 +78,7 @@
                 android:hint="Tên câu lạc bộ"
                 android:paddingHorizontal="12dp"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#" />
+                android:textColorHint="#AAAAAA"/>
 
             <!-- Mô tả bài đăng -->
             <TextView
@@ -90,6 +90,7 @@
                 android:textColorHint="#AAAAAA"
                 android:textSize="14sp" />
 
+            <!-- Tài liệu đăng tải -->
             <EditText
                 android:id="@+id/etPostDescription"
                 android:layout_width="match_parent"
@@ -104,7 +105,6 @@
                 android:textColor="#FFFFFF"
                 android:textColorHint="#AAAAAA" />
 
-            <!-- Tài liệu đăng tải -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -121,8 +121,7 @@
                 android:background="@drawable/bg_bai_dang"
                 android:layout_marginBottom="16dp"
                 android:clickable="true"
-                android:focusable="true"
-                android:orietation="vertical">
+                android:focusable="true">
 
                 <ImageView
                     android:layout_width="102dp"
