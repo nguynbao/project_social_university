@@ -3,6 +3,7 @@ package com.example.myapplication.data.dao;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Dao
 public interface UserDao {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(User user);
 
     @Update
@@ -27,8 +28,8 @@ public interface UserDao {
     @Query("SELECT * FROM user_table WHERE id = :userId")
     User getUserById(int userId);
 
-    @Query("SELECT * FROM user_table WHERE username = :username AND password = :password")
-    User login(String username, String password);
+    @Query("SELECT * FROM user_table WHERE email = :email AND password = :password")
+    User login(String email, String password);
     @Query("SELECT * FROM user_table WHERE email = :email LIMIT 1")
     User findUserByEmail(String email);
 }
