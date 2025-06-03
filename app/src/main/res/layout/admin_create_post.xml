@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1A1A1A">
+    android:background="#1A1A1A"
+    android:id="@+id/main">
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="253dp"
@@ -111,8 +112,8 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/edt_round_gray">
 
-                <EditText
-                    android:id="@+id/etEndDate"
+                <TextView
+                    android:id="@+id/edttimeSelection"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -120,8 +121,11 @@
                     android:hint="Thời gian kết thúc"
                     android:paddingHorizontal="12dp"
                     android:textColor="#FFFFFF"
+                    android:gravity="center_vertical"
+                    android:textSize="18dp"
                     android:textColorHint="#AAAAAA" />
                 <ImageView
+                    android:id="@+id/timeSelection"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/adminlich"

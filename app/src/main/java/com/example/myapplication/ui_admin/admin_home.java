@@ -31,6 +31,7 @@ public class admin_home extends AppCompatActivity {
         layoutCreateNotification = findViewById(R.id.layoutCreateNotification);
         layoutCreatePost.setOnClickListener(v -> {
             Toast.makeText(this, "Tạo bài đăng", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, admin_creatPost.class));
         });
         layoutManageStudent.setOnClickListener(v -> {
             Toast.makeText(this, "Quản lý sinh viên", Toast.LENGTH_SHORT).show();

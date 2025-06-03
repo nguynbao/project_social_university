@@ -21,11 +21,8 @@ public interface PostDao {
     @Delete
     void delete(Post post);
 
-    @Query("SELECT * FROM post_table ORDER BY date DESC")
+    @Query("SELECT * FROM post_table ORDER BY deadline DESC")
     List<Post> getAllPosts();
-
-    @Query("SELECT * FROM post_table WHERE isActivity = 1 ORDER BY date DESC")
-    List<Post> getActivities();
 
     @Query("SELECT * FROM post_table WHERE id = :postId")
     Post getPostById(int postId);

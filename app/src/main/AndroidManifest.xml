@@ -22,6 +22,9 @@
             android:name=".ui.activity_form"
             android:exported="false" />
         <activity
+            android:name=".ui_admin.admin_creatPost"
+            android:exported="false"/>
+        <activity
             android:name=".ui.activity_signup"
             android:exported="false" />
         <activity
