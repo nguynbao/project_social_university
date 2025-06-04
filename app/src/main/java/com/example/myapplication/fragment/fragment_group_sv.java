@@ -34,7 +34,6 @@ public class fragment_group_sv extends Fragment {
     adapter_groupSV adapter_groupSV;
     GvPostDao gvPostDao;
     LikeDao likeDao;
-
     AppCompatButton share;
     List<GvPost> gvPostList = new ArrayList<>();
     public fragment_group_sv() {
