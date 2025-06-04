@@ -28,7 +28,7 @@ public class adapter_home_pages extends RecyclerView.Adapter<adapter_home_pages.
     public adapter_home_pages(List<Post> postList) {
         this.postList = postList;
     }
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView clubName ;
         TextView contentPost;
         TextView timePost;
