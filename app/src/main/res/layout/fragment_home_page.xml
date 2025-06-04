@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ImageView
-        android:id="@+id/menuhp"
+        android:id="@+id/img_menuhp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -17,28 +17,36 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="311dp"
-        android:layout_height="70dp"
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
         android:background="@drawable/thame_header_gray"
-        android:gravity="center"
+        android:clipToPadding="false"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:padding="12dp"
+        android:layout_marginStart="89dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="69dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteY="-3dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:src="@drawable/icon_home"
             app:tint="@color/black" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="159dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
             android:text="@string/homepage"
             android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:textSize="16sp" />
     </LinearLayout>
 
     <ScrollView

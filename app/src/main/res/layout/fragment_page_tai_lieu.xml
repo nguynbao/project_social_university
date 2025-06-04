@@ -17,29 +17,34 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="311dp"
-        android:layout_height="70dp"
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
         android:background="@drawable/thame_header_gray"
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:padding="12dp"
+        android:layout_marginStart="89dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="69dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteY="2dp">
+        tools:layout_editor_absoluteY="-3dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:src="@drawable/icon_documents"
             app:tint="@color/black"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="159dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
             android:text="Documents"
             android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:textSize="16sp" />
     </LinearLayout>
 
     <ScrollView
