@@ -11,6 +11,7 @@ public class Like {
     private int postId;
     private int userId;
 
+
     public Like(int postId, int userId) {
         this.postId = postId;
         this.userId = userId;

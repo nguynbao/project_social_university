@@ -22,4 +22,6 @@ public interface LikeDao {
 
     @Query("SELECT * FROM like_table WHERE postId = :postId AND userId = :userId")
     Like getUserLikeForPost(int postId, int userId);
+    @Query("SELECT COUNT(*) FROM like_table WHERE postId = :postId")
+    int getLikeCount(int postId);
 }

@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Sv_img_post" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/iconLike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -67,20 +67,18 @@
         app:layout_constraintTop_toBottomOf="@+id/Sv_post" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/SoLuong"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="32dp"
         android:text="33 likes"
-
         android:textColor="@color/white"
         android:textSize="15dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintStart_toEndOf="@+id/iconLike"
         app:layout_constraintTop_toBottomOf="@+id/Sv_post" />
 
     <ImageView
-
         android:id="@+id/imageView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
