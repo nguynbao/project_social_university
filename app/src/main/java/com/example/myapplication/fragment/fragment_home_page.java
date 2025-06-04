@@ -49,7 +49,7 @@ public class fragment_home_page extends Fragment {
             adapter_home_pages adapterHomePages = new adapter_home_pages(postList);
             recycler_homepage.setAdapter(adapterHomePages);
         });
-        ImageView menuhp = view.findViewById(R.id.menuhp);
+        ImageView menuhp = view.findViewById(R.id.img_menuhp);
         menuhp.setOnClickListener(view1 -> {
             menu.openMenu(getContext(), view1);
         });

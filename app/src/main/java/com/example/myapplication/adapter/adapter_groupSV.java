@@ -71,7 +71,7 @@ public class adapter_groupSV extends RecyclerView.Adapter<adapter_groupSV.ViewHo
                 } else {
                     holder.iconLike.setColorFilter(Color.GRAY); // Đổi màu khi chưa like
                 }
-                holder.SoLuong.setText(likeCount + "likes");
+                holder.SoLuong.setText(likeCount + " likes");
             });
         });
         holder.iconLike.setOnClickListener(v -> {

@@ -53,7 +53,7 @@ public class fragment_group_sv extends Fragment {
         share.setOnClickListener(v -> {
             startActivity(new Intent(requireContext(), activity_post_gr_sv.class));
         });
-        img_backGrsv = view.findViewById(R.id.img_backGrsv);
+        img_backGrsv = view.findViewById(R.id.menuhp_group);
         img_backGrsv.setOnClickListener(v -> {
             menu.openMenu(requireContext(), v);
         });

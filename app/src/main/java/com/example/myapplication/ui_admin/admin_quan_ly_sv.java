@@ -76,17 +76,17 @@ public class admin_quan_ly_sv extends AppCompatActivity {
     }
     private void loadData() {
         // Kiểm tra và thêm dữ liệu mẫu
-        Executors.newSingleThreadExecutor().execute(() -> {
-            // Đoạn kiểm tra dữ liệu mẫu vẫn chạy nền
-            boolean check = true;
-            if (check) { // Dùng count() thay cho getAllUsers().isEmpty()
-                userDao.insert(new User("Nguyen Van A", "a@gmail.com", "123456", "111111", "123456", "123456", 1));
-                userDao.insert(new User("Tran Thi B", "b@gmail.com", "123456", "222222", "123456", "123456", 2));
-                userDao.insert(new User("Le Van C", "c@gmail.com", "123456", "333333", "123456", "123456", 1));
-                userDao.insert(new User("Pham Thi D", "d@gmail.com", "123456", "444444", "123456", "123456", 2));
-                userDao.insert(new User("Hoang Van E", "e@gmail.com", "123456", "555555", "123456", "123456", 1));
-            }
-        });
+//        Executors.newSingleThreadExecutor().execute(() -> {
+//            // Đoạn kiểm tra dữ liệu mẫu vẫn chạy nền
+//            boolean check = true;
+//            if (check) { // Dùng count() thay cho getAllUsers().isEmpty()
+//                userDao.insert(new User("Nguyen Van A", "a@gmail.com", "123456", "111111", "123456", "123456", 1));
+//                userDao.insert(new User("Tran Thi B", "b@gmail.com", "123456", "222222", "123456", "123456", 2));
+//                userDao.insert(new User("Le Van C", "c@gmail.com", "123456", "333333", "123456", "123456", 1));
+//                userDao.insert(new User("Pham Thi D", "d@gmail.com", "123456", "444444", "123456", "123456", 2));
+//                userDao.insert(new User("Hoang Van E", "e@gmail.com", "123456", "555555", "123456", "123456", 1));
+//            }
+//        });
 
         // Dùng LiveData để quan sát dữ liệu
         userDao.getAllUsers().observe(this, users -> {
