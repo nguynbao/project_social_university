@@ -143,7 +143,8 @@
                     android:id="@+id/uploadDoc"
                     android:layout_width="match_parent"
                     android:layout_height="82dp"
-                    android:text="Dán link tài liệu vào đây"
+                    android:hint="Dán link tài liệu vào đây"
+                    android:textColorHint="@color/gray"
                     android:textColor="@color/gray"
                     android:textAlignment="center"
                     android:background="@drawable/edt_round_gray"/>

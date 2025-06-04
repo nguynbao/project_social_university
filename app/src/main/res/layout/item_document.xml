@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="15dp">
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -33,8 +34,8 @@
     <ImageView
         android:id="@+id/imgDoc"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/bg_bai_dang"
         android:src="@drawable/img_doc"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +46,7 @@
         android:id="@+id/content_Doc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:text="Tài liệu đăng kí hiến máu"
         android:textColor="@color/white"
         android:textSize="20dp"
@@ -58,7 +59,7 @@
         android:id="@+id/btnJoin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="10dp"
         android:text="Xem ngay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

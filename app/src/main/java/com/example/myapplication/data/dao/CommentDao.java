@@ -21,6 +21,9 @@ public interface CommentDao {
     @Delete
     void delete(Comment comment);
 
-    @Query("SELECT * FROM comment_table WHERE postId = :postId ORDER BY date DESC")
-    List<Comment> getCommentsByPostId(int postId);
+    @Query("SELECT * FROM comment_table WHERE id = :id")
+    List<Comment> getCommentsById(int id);
+
+    @Query("SELECT * FROM comment_table")
+    List<Comment> getAllComments();
 }

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="15dp"
-    android:layout_margin="10dp">
+    android:padding="15dp">
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -36,7 +35,7 @@
         android:id="@+id/Sv_img_post"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/bg_bai_dang"
         android:src="@drawable/img_bai_dang"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +46,7 @@
         android:id="@+id/Sv_post"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="15dp"
         android:text="Hiến máu xong ổn không mọi người"
         android:textColor="@color/white"
         android:textSize="20dp"
@@ -79,7 +78,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Sv_post" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/btn_comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="212dp"
@@ -96,7 +95,7 @@
         android:text="33 comment"
         android:textColor="@color/white"
         android:textSize="15dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintStart_toEndOf="@+id/btn_comment"
         app:layout_constraintTop_toBottomOf="@+id/Sv_post" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

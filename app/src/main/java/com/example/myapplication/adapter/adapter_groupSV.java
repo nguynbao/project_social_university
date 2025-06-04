@@ -1,24 +1,33 @@
 package com.example.myapplication.adapter;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.data.AppDatabase;
+import com.example.myapplication.data.dao.CommentDao;
 import com.example.myapplication.data.dao.LikeDao;
 import com.example.myapplication.data.dao.UserDao;
+import com.example.myapplication.data.entity.Comment;
 import com.example.myapplication.data.entity.GvPost;
 import com.example.myapplication.data.entity.Like;
 import com.example.myapplication.data.entity.User;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -74,6 +83,44 @@ public class adapter_groupSV extends RecyclerView.Adapter<adapter_groupSV.ViewHo
                 likeClickListener.onLikeClick(post, position);
             }
         });
+        holder.btn_comment.setOnClickListener(view -> {
+            BottomSheetDialog dialog = new BottomSheetDialog(view.getContext());
+            View view1 = LayoutInflater.from(dialog.getContext()).inflate(R.layout.popup_comment, null);
+            dialog.setContentView(view1);
+
+            RecyclerView recycler_Comment = view1.findViewById(R.id.recycler_Comment);
+            recycler_Comment.setLayoutManager(new LinearLayoutManager(view1.getContext()));
+            EditText edt_Comment = view1.findViewById(R.id.edt_Comment);
+            Button btn_Send = view1.findViewById(R.id.btn_Send);
+            Executors.newSingleThreadExecutor().execute(()->{
+                AppDatabase db = AppDatabase.getDatabase(view1.getContext());
+                CommentDao commentDao = db.commentDao();
+                List<Comment> commentList = commentDao.getAllComments();
+                adapter_comment adapterComment = new adapter_comment(commentList);
+                recycler_Comment.setAdapter(adapterComment);
+            });
+            btn_Send.setOnClickListener(sendView ->{
+                String newComment = edt_Comment.getText().toString().trim();
+                if (!newComment.isEmpty()){
+                    Executors.newSingleThreadExecutor().execute(() -> {
+                        AppDatabase db = AppDatabase.getDatabase(view1.getContext());
+                        CommentDao commentDao = db.commentDao();
+                        Comment comment = new Comment(newComment);
+                        commentDao.insert(comment);
+
+                        ((Activity) view1.getContext()).runOnUiThread(() -> {
+                            List<Comment> updatedCommentList = commentDao.getAllComments();
+                            adapter_comment updatedAdapter = new adapter_comment(updatedCommentList);
+                            recycler_Comment.setAdapter(updatedAdapter);
+                            updatedAdapter.notifyDataSetChanged();
+                        });
+
+                    });
+                }
+            });
+            dialog.show();
+        });
+
     }
 
     @Override
@@ -81,7 +128,7 @@ public class adapter_groupSV extends RecyclerView.Adapter<adapter_groupSV.ViewHo
         return postsList.size();
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView Sv_img_post, iconLike;
+        ImageView Sv_img_post, iconLike, btn_comment;
         TextView Sv_name, Sv_post, SoLuong;
 
         public ViewHolder(View itemView) {
@@ -92,6 +139,7 @@ public class adapter_groupSV extends RecyclerView.Adapter<adapter_groupSV.ViewHo
             Sv_post = itemView.findViewById(R.id.Sv_post);
             iconLike = itemView.findViewById(R.id.iconLike);
             SoLuong = itemView.findViewById(R.id.SoLuong);
+            btn_comment = itemView.findViewById(R.id.btn_comment);
         }
     }
 }
