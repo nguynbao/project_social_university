@@ -19,7 +19,7 @@
     <!-- Header -->
     <LinearLayout
         android:id="@+id/header"
-        android:layout_width="284dp"
+        android:layout_width="wrap_content"
         android:layout_height="51dp"
         android:layout_marginStart="89dp"
         android:layout_marginLeft="16dp"

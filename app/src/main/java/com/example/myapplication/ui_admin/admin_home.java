@@ -2,6 +2,7 @@ package com.example.myapplication.ui_admin;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ import com.example.myapplication.R;
 
 public class admin_home extends AppCompatActivity {
     private LinearLayout layoutCreatePost, layoutManageStudent, layoutUploadDoc, layoutCreateNotification;
+    private ImageView logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +27,8 @@ public class admin_home extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        logout = findViewById(R.id.logout);
+        logout.setOnClickListener(v -> finish());
         layoutCreatePost = findViewById(R.id.layoutCreatePost);
         layoutManageStudent = findViewById(R.id.layoutManageStudent);
         layoutUploadDoc = findViewById(R.id.layoutUploadDoc);

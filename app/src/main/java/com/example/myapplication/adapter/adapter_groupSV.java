@@ -57,15 +57,21 @@ public class adapter_groupSV extends RecyclerView.Adapter<adapter_groupSV.ViewHo
         holder.Sv_name.setText(post.getStudentName());
         holder.Sv_post.setText(post.getContent());
         holder.Sv_img_post.setImageURI(post.getImageUri());
+
+
+
         // Check Like status in background
         Executors.newSingleThreadExecutor().execute(() -> {
             Like existingLike = likeDao.getUserLikeForPost(post.getId(), currentUserId);
+            int likeCount = likeDao.getLikeCount(post.getId());
             holder.iconLike.post(() -> {
                 if (existingLike != null) {
                     holder.iconLike.setColorFilter(Color.RED);  // Đổi màu khi đã like
+
                 } else {
                     holder.iconLike.setColorFilter(Color.GRAY); // Đổi màu khi chưa like
                 }
+                holder.SoLuong.setText(likeCount + " likes");
             });
         });
         holder.iconLike.setOnClickListener(v -> {
