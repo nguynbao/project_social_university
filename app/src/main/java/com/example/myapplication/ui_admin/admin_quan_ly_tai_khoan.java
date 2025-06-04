@@ -22,7 +22,7 @@ import java.util.concurrent.Executors;
 
 public class admin_quan_ly_tai_khoan extends AppCompatActivity {
     private AppCompatButton btnUpload, btnDelete;
-    private TextView tvUsername, tvpass, tvMssv, tvMaLop, tvrole;
+    private TextView tvUsername, tvpass, tvMssv, tvMaLop, tvrole, tvEmail;
     private ImageView imgBack;
     private int userId;
     private UserDao userDao;
@@ -51,6 +51,7 @@ public class admin_quan_ly_tai_khoan extends AppCompatActivity {
         tvMssv = findViewById(R.id.edtStudentId);
         tvMaLop = findViewById(R.id.edtClassId);
         tvrole = findViewById(R.id.edtRole);
+        tvEmail = findViewById(R.id.edtEmail);
 
         btnUpload = findViewById(R.id.btnUpload);
         btnDelete = findViewById(R.id.btnDelete);
@@ -73,6 +74,7 @@ public class admin_quan_ly_tai_khoan extends AppCompatActivity {
                     tvpass.setText(user.getPassword());
                     tvMssv.setText(user.getMssv());
                     tvMaLop.setText(user.getMaLop());
+                    tvEmail.setText(user.getEmail());
                     tvrole.setText(userWithRole.role.getRoleName());
                 });
             }
@@ -84,6 +86,7 @@ public class admin_quan_ly_tai_khoan extends AppCompatActivity {
         String password = tvpass.getText().toString();
         String mssv = tvMssv.getText().toString();
         String maLop = tvMaLop.getText().toString();
+        String email = tvEmail.getText().toString();
         String role = tvrole.getText().toString();
         int role_ID;
         if (role.equals("Admin")){
@@ -100,6 +103,7 @@ public class admin_quan_ly_tai_khoan extends AppCompatActivity {
             updatedUser.setMssv(mssv);
             updatedUser.setMaLop(maLop);
             updatedUser.setRoleId(role_ID);
+            updatedUser.setEmail(email);
             userDao.update(updatedUser);
             runOnUiThread(() -> {
                 Toast.makeText(this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();

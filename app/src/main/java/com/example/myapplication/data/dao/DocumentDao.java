@@ -1,6 +1,7 @@
 package com.example.myapplication.data.dao;
 
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -24,4 +25,8 @@ public interface DocumentDao {
 
     @Query("SELECT * FROM document_table")
     List<Document> getAllDocuments();
+    @Query("SELECT * FROM document_table")
+    LiveData<List<Document>> getAllDocumentsbyliveData();
+    @Query("SELECT * FROM document_table WHERE id = :documentId")
+    Document getDocById(int documentId);
 }

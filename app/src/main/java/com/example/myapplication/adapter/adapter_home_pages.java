@@ -31,7 +31,7 @@ public class adapter_home_pages extends RecyclerView.Adapter<adapter_home_pages.
         this.postList = postList;
         this.context = context;
     }
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView clubName ;
         TextView contentPost;
         TextView timePost;
@@ -71,8 +71,6 @@ public class adapter_home_pages extends RecyclerView.Adapter<adapter_home_pages.
             }
         });
     }
-
-
     @Override
     public int getItemCount() {
         return postList.size();

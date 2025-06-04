@@ -3,4 +3,7 @@
     <item
         android:id="@+id/logout"
         android:title="Đăng xuất"/>
+    <item
+        android:id="@+id/info"
+        android:title="Thông tin"/>
 </menu>

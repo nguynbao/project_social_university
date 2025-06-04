@@ -51,7 +51,7 @@ public class fragment_home_page extends Fragment {
         });
         ImageView menuhp = view.findViewById(R.id.img_menuhp);
         menuhp.setOnClickListener(view1 -> {
-            menu.openMenu(getContext(), view1);
+            menu.openMenu(requireActivity(), view1);
         });
         return view;
     }
