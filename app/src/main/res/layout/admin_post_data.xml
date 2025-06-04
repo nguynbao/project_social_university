@@ -43,7 +43,8 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginEnd="8dp"
-            android:src="@drawable/userimg" />
+            android:src="@drawable/notice"
+            android:tint="@color/black"/>
 
         <TextView
             android:layout_width="187dp"

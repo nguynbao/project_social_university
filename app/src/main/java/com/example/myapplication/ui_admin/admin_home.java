@@ -43,7 +43,7 @@ public class admin_home extends AppCompatActivity {
         layoutCreateNotification = findViewById(R.id.layoutCreateNotification);
         layoutCreatePost.setOnClickListener(v -> {
             Toast.makeText(this, "Tạo bài đăng", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, admin_creatPost.class));
+            startActivity(new Intent(this, admin_allPost.class));
         });
         layoutManageStudent.setOnClickListener(v -> {
             Toast.makeText(this, "Quản lý sinh viên", Toast.LENGTH_SHORT).show();
@@ -51,7 +51,7 @@ public class admin_home extends AppCompatActivity {
         });
         layoutUploadDoc.setOnClickListener(v -> {
             Toast.makeText(this, "Đăng tải tài liệu", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, admin_creatDoc.class));
+            startActivity(new Intent(this, admin_allDoc.class));
         });
         layoutCreateNotification.setOnClickListener(v -> {
             Toast.makeText(this, "Tạo thông báo", Toast.LENGTH_SHORT).show();
