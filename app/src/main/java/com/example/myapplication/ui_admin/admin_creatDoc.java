@@ -25,8 +25,8 @@ import java.util.List;
 import java.util.concurrent.Executors;
 
 public class admin_creatDoc extends AppCompatActivity {
-    EditText edtPostDescription, edtClubName;
-    ImageView uploadDoc, imgBack;
+    EditText edtPostDescription, edtClubName, uploadDoc;
+    ImageView imgBack;
     Button btnUpload;
 
     String title, fileUrl, content;
@@ -41,11 +41,11 @@ public class admin_creatDoc extends AppCompatActivity {
         edtPostDescription = findViewById(R.id.edtPostDescription);
         edtClubName = findViewById(R.id.edtClubName);
         uploadDoc = findViewById(R.id.uploadDoc);
-        uploadDoc.setOnClickListener(v -> uploadDocFunction());
         btnUpload = findViewById(R.id.btnUpload);
         btnUpload.setOnClickListener(v-> createDoc());
         imgBack = findViewById(R.id.img_backcd);
         imgBack.setOnClickListener(v -> finish());
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -53,16 +53,10 @@ public class admin_creatDoc extends AppCompatActivity {
         });
     }
 
-    private void uploadDocFunction() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*");
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        startActivityForResult(Intent.createChooser(intent, "Chọn tệp tài liệu"), PICK_FILE_REQUEST);
-    }
-
     private void createDoc() {
         title = edtClubName.getText().toString();
         content = edtPostDescription.getText().toString();
+        fileUrl = uploadDoc.getText().toString();
         Document document = new Document(title, fileUrl, content);
         Executors.newSingleThreadExecutor().execute(()->{
             AppDatabase db = AppDatabase.getDatabase(getApplicationContext());
@@ -79,16 +73,5 @@ public class admin_creatDoc extends AppCompatActivity {
             });
         });
         finish();
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @NonNull Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_FILE_REQUEST && resultCode == RESULT_OK && data != null){
-            Uri selectedFileUri = data.getData();
-            if(selectedFileUri != null){
-                Toast.makeText(this, "Upload thành công" + String.valueOf(selectedFileUri), Toast.LENGTH_SHORT).show();
-                fileUrl = String.valueOf(selectedFileUri);
-            }
-        }
     }
 }

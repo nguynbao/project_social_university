@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.adapter_groupSV;
+import com.example.myapplication.component.menu;
 import com.example.myapplication.data.AppDatabase;
 import com.example.myapplication.data.dao.GvPostDao;
 import com.example.myapplication.data.dao.LikeDao;
@@ -75,6 +77,10 @@ public class fragment_group_sv extends Fragment {
         recyclerView.setAdapter(adapter_groupSV);
         gvPostDao.getAllPostsLiveData().observe(getViewLifecycleOwner(), gvPosts -> {
             adapter_groupSV.setData(gvPosts);
+        });
+        ImageView menuhp_group = view.findViewById(R.id.menuhp_group);
+        menuhp_group.setOnClickListener(view1 -> {
+            menu.openMenu(getContext(), view1);
         });
         return view;
     }

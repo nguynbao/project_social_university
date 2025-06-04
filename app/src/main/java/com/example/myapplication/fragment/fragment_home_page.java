@@ -1,4 +1,6 @@
 package com.example.myapplication.fragment;
+import com.example.myapplication.component.menu;
+
 
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.adapter_home_pages;
+import com.example.myapplication.component.menu;
 import com.example.myapplication.data.AppDatabase;
 import com.example.myapplication.data.dao.PostDao;
 import com.example.myapplication.data.entity.Post;
@@ -25,8 +28,11 @@ import java.util.List;
 import java.util.concurrent.Executors;
 
 public class fragment_home_page extends Fragment {
+
+
     public fragment_home_page() {
     }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -42,6 +48,10 @@ public class fragment_home_page extends Fragment {
             }
             adapter_home_pages adapterHomePages = new adapter_home_pages(postList);
             recycler_homepage.setAdapter(adapterHomePages);
+        });
+        ImageView menuhp = view.findViewById(R.id.menuhp);
+        menuhp.setOnClickListener(view1 -> {
+            menu.openMenu(getContext(), view1);
         });
         return view;
     }
