@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="15dp"
+    android:layout_margin="10dp">
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -21,6 +23,7 @@
             android:src="@drawable/img_user" />
 
         <TextView
+            android:id="@+id/SvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -30,7 +33,7 @@
             android:textSize="20sp" />
     </LinearLayout>
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/Sv_img_post"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -41,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/Sv_post"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -51,7 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.17"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/Sv_img_post" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -61,7 +64,7 @@
         android:layout_marginTop="16dp"
         android:src="@drawable/icon_thich"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/Sv_post" />
 
     <TextView
         android:id="@+id/textView6"
@@ -74,7 +77,7 @@
         android:textColor="@color/white"
         android:textSize="15dp"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/Sv_post" />
 
     <ImageView
 
@@ -85,7 +88,7 @@
         android:layout_marginTop="16dp"
         android:src="@drawable/icon_cmt"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/Sv_post" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -96,6 +99,6 @@
         android:textColor="@color/white"
         android:textSize="15dp"
         app:layout_constraintStart_toEndOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/Sv_post" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

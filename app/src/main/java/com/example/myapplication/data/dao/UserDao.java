@@ -51,4 +51,6 @@ public interface UserDao {
             "OR username LIKE '%' || :query || '%' " +
             "OR email LIKE '%' || :query || '%'")
     LiveData<List<User>> searchUsers(String query);
+    @Query("SELECT username FROM user_table WHERE id = :studentId")
+    String getUserNameById(int studentId);
 }

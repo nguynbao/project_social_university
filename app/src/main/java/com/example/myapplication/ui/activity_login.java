@@ -1,6 +1,8 @@
 package com.example.myapplication.ui;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +30,8 @@ public class activity_login extends AppCompatActivity {
     private EditText email, password;
     private AppCompatButton login;
     private UserDao userDao;
+    User user ;
+
 
 
     @Override
@@ -56,12 +60,17 @@ public class activity_login extends AppCompatActivity {
                     for (UserWithRole userWithRole :userWithRoleList){
                         if (userWithRole.user.getEmail().equals(getEmail) && userWithRole.user.getPassword().equals(getPass)){
                             loginSuccess = true;
+                            user = userWithRole.user;
                             int roleId = userWithRole.user.getRoleId();
                             runOnUiThread(()->{
                                 if (roleId == 1){
                                     Intent intent = new Intent(activity_login.this, admin_home.class);
                                     startActivity(intent);
                                 }else {
+                                    SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putInt("student_id", user.getId());
+                                    editor.apply();
                                     Intent intent = new Intent(activity_login.this, activity_home.class);
                                     startActivity(intent);
                                 }
