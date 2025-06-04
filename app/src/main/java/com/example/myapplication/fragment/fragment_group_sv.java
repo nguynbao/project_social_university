@@ -4,10 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +24,7 @@ import com.example.myapplication.data.dao.LikeDao;
 import com.example.myapplication.data.entity.GvPost;
 import com.example.myapplication.data.entity.Like;
 import com.example.myapplication.ui.activity_post_gr_sv;
+import com.example.myapplication.component.menu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,7 @@ public class fragment_group_sv extends Fragment {
     adapter_groupSV adapter_groupSV;
     GvPostDao gvPostDao;
     LikeDao likeDao;
+    ImageView img_backGrsv;
 
     AppCompatButton share;
     List<GvPost> gvPostList = new ArrayList<>();
@@ -49,6 +51,10 @@ public class fragment_group_sv extends Fragment {
         share = view.findViewById(R.id.share);
         share.setOnClickListener(v -> {
             startActivity(new Intent(requireContext(), activity_post_gr_sv.class));
+        });
+        img_backGrsv = view.findViewById(R.id.img_backGrsv);
+        img_backGrsv.setOnClickListener(v -> {
+            menu.openMenu(requireContext(), v);
         });
         gvPostDao = AppDatabase.getDatabase(getContext()).gvPostDao();
         likeDao = AppDatabase.getDatabase(getContext()).likeDao();
