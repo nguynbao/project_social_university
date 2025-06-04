@@ -60,8 +60,6 @@ public class adapter_home_pages extends RecyclerView.Adapter<adapter_home_pages.
                 .load(new File(post.getImagePath()))
                 .into(holder.imgPost);
     }
-
-
     @Override
     public int getItemCount() {
         return postList.size();

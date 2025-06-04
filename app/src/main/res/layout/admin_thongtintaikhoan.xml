@@ -103,6 +103,17 @@
                 android:textColor="#8B8B8B"
                 android:textColorHint="#AAAAAA"
                 android:textSize="14sp" />
+            <EditText
+                android:id="@+id/edtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/edt_round_gray"
+                android:hint="Email"
+                android:padding="14dp"
+                android:textColor="#8B8B8B"
+                android:textColorHint="#AAAAAA"
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/edtStudentId"
