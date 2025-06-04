@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/edt_round_gray">
+    android:background="@drawable/btn_round_white">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_Comment"
@@ -26,14 +26,15 @@
             android:hint="Comment"
             android:textColorHint="@color/gray"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_Send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/black"
             android:backgroundTint="@color/black"
             android:layout_weight="0.1"
-            android:text="Send" />
+            android:text="Send"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
 </LinearLayout>

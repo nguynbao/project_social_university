@@ -10,12 +10,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.data.entity.Comment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class adapter_comment extends RecyclerView.Adapter<adapter_comment.ViewHolder> {
     List<Comment> commentList;
-    public adapter_comment(List<Comment> commentList){
+    public adapter_comment(){
+        this.commentList = new ArrayList<>();
+    }
+    public adapter_comment( List<Comment> commentList){
         this.commentList = commentList;
+    }
+    public void setData(List<Comment> comments) {
+        this.commentList = comments;
+        notifyDataSetChanged();
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
@@ -35,7 +43,6 @@ public class adapter_comment extends RecyclerView.Adapter<adapter_comment.ViewHo
     public void onBindViewHolder(@NonNull adapter_comment.ViewHolder holder, int position) {
         Comment comment = commentList.get(position);
         holder.textView.setText(comment.getContent());
-
     }
 
     @Override
