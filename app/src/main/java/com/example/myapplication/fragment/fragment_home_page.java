@@ -46,7 +46,7 @@ public class fragment_home_page extends Fragment {
             for (Post post : postList){
                 Log.d("Post:", post.getNameClub());
             }
-            adapter_home_pages adapterHomePages = new adapter_home_pages(postList);
+            adapter_home_pages adapterHomePages = new adapter_home_pages(postList, getContext());
             recycler_homepage.setAdapter(adapterHomePages);
         });
         ImageView menuhp = view.findViewById(R.id.img_menuhp);

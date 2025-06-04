@@ -37,16 +37,17 @@ import java.util.concurrent.Executors;
 public class admin_creatPost extends AppCompatActivity {
     private static final  int REQUEST_CODE_IMAGE =1;
     private Uri selectedImageUri = null;
-    EditText edtNameClub, etPostDescription;
+    EditText edtNameClub, etPostDescription, urlLink;
     TextView edttimeSelection;
     Button btnUpload;
     ImageView timeSelection, imgUpload, imgBack;
-    String imagePath_Uri, nameClub, content, deadline;
+    String imagePath_Uri, nameClub, content, deadline, urlJoin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.admin_create_post);
+        urlLink = findViewById(R.id.urlLink);
         edtNameClub = findViewById(R.id.edtNameClub);
         etPostDescription = findViewById(R.id.etPostDescription);
         edttimeSelection = findViewById(R.id.edttimeSelection);
@@ -76,27 +77,25 @@ public class admin_creatPost extends AppCompatActivity {
     }
 
     private void createPost() {
-        nameClub = edtNameClub.getText().toString();
-        content = etPostDescription.getText().toString();
-        deadline = edttimeSelection.getText().toString();
-        Post post = new Post(nameClub, content, deadline, imagePath_Uri);
-        Executors.newSingleThreadExecutor().execute(()->{
-            AppDatabase db = AppDatabase.getDatabase(getApplicationContext());
-            PostDao postDao = db.postDao();
-            postDao.insert(post);
-            List<Post> postList =  postDao.getAllPosts();
-            for (Post post1 : postList){
-                Log.d("Post", post1.getNameClub());
-                Log.d("Post", post1.getContent());
-                Log.d("Post", post1.getDeadline());
-                Log.d("Post", post1.getImagePath());
-            }
-            runOnUiThread(()->{
-                Toast.makeText(admin_creatPost.this, "Đăng bài thành công", Toast.LENGTH_SHORT).show();
+        if (imagePath_Uri != null){
+            nameClub = edtNameClub.getText().toString();
+            content = etPostDescription.getText().toString();
+            deadline = edttimeSelection.getText().toString();
+            urlJoin = urlLink.getText().toString();
+            Post post = new Post(nameClub, content, deadline, imagePath_Uri, urlJoin);
+            Executors.newSingleThreadExecutor().execute(()->{
+                AppDatabase db = AppDatabase.getDatabase(getApplicationContext());
+                PostDao postDao = db.postDao();
+                postDao.insert(post);
+                runOnUiThread(()->{
+                    Toast.makeText(admin_creatPost.this, "Đăng bài thành công", Toast.LENGTH_SHORT).show();
+                    finish();
+                });
             });
-        });
-        finish();
 
+        }else {
+            Toast.makeText(admin_creatPost.this, "Vui lòng thêm ảnh", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void showDateTimePicker() {

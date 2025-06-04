@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="15dp">
+    android:layout_marginTop="15dp"
+    android:layout_marginBottom="15dp">
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -33,11 +34,13 @@
     </LinearLayout>
     <ImageView
         android:id="@+id/Sv_img_post"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/bg_bai_dang"
         android:src="@drawable/img_bai_dang"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
@@ -81,13 +84,15 @@
         android:id="@+id/btn_comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="212dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/icon_cmt"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.321"
+        app:layout_constraintStart_toEndOf="@+id/SoLuong"
         app:layout_constraintTop_toBottomOf="@+id/Sv_post" />
 
     <TextView
+        android:id="@+id/count_Comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"

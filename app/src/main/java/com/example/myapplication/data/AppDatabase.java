@@ -32,7 +32,7 @@ import com.example.myapplication.data.entity.User;
 import java.util.concurrent.Executors;
 
 
-@Database(entities = {User.class, Role.class, Post.class, Notify.class, Document.class, GvPost.class, Like.class, Comment.class}, version = 2, exportSchema = false)
+@Database(entities = {User.class, Role.class, Post.class, Notify.class, Document.class, GvPost.class, Like.class, Comment.class}, version = 1, exportSchema = false)
 @TypeConverters({UriTypeConverter.class})
 
 public abstract class AppDatabase extends RoomDatabase {

@@ -1,6 +1,7 @@
 package com.example.myapplication.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -25,8 +26,10 @@ import java.util.List;
 public class adapter_home_pages extends RecyclerView.Adapter<adapter_home_pages.ViewHolder> {
 
     List<Post> postList;
-    public adapter_home_pages(List<Post> postList) {
+    Context context;
+    public adapter_home_pages(List<Post> postList, Context context) {
         this.postList = postList;
+        this.context = context;
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView clubName ;
@@ -59,6 +62,14 @@ public class adapter_home_pages extends RecyclerView.Adapter<adapter_home_pages.
         Glide.with(holder.itemView.getContext())
                 .load(new File(post.getImagePath()))
                 .into(holder.imgPost);
+        holder.subcribePost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(post.getUrlJoin()));
+                context.startActivity(intent);
+            }
+        });
     }
 
 

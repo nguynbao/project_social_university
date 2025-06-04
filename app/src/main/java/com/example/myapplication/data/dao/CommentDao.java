@@ -25,6 +25,9 @@ public interface CommentDao {
     @Query("SELECT * FROM comment_table WHERE id = :id")
     List<Comment> getCommentsById(int id);
 
+    @Query("SELECT * FROM comment_table WHERE GvPost_Id = :GvPost_Id")
+    List<Comment> getCommentsByIdPost(int GvPost_Id);
+
     @Query("SELECT * FROM comment_table")
     List<Comment> getAllComments();
 }
