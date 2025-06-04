@@ -7,32 +7,26 @@ import androidx.room.PrimaryKey;
 public class Comment {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    private int postId;
-    private int userId;
     private String content;
-    private String date;
 
-    // Constructor
-    public Comment(int postId, int userId, String content, String date) {
-        this.postId = postId;
-        this.userId = userId;
+
+    public Comment( String content) {
         this.content = content;
-        this.date = date;
     }
 
-    // Getters and setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public int getId() {
+        return id;
+    }
 
-    public int getPostId() { return postId; }
-    public void setPostId(int postId) { this.postId = postId; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public int getUserId() { return userId; }
-    public void setUserId(int userId) { this.userId = userId; }
+    public String getContent() {
+        return content;
+    }
 
-    public String getContent() { return content; }
-    public void setContent(String content) { this.content = content; }
-
-    public String getDate() { return date; }
-    public void setDate(String date) { this.date = date; }
+    public void setContent(String content) {
+        this.content = content;
+    }
 }

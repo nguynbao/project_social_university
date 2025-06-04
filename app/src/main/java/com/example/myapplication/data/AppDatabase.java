@@ -12,9 +12,11 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 
 import com.example.myapplication.component.UriTypeConverter;
+import com.example.myapplication.data.dao.CommentDao;
 import com.example.myapplication.data.dao.GvPostDao;
 import com.example.myapplication.data.dao.LikeDao;
 import com.example.myapplication.data.dao.NotifyDao;
+import com.example.myapplication.data.entity.Comment;
 import com.example.myapplication.data.entity.GvPost;
 import com.example.myapplication.data.entity.Like;
 import com.example.myapplication.data.entity.Notify;
@@ -30,7 +32,7 @@ import com.example.myapplication.data.entity.User;
 import java.util.concurrent.Executors;
 
 
-@Database(entities = {User.class, Role.class, Post.class, Notify.class, Document.class, GvPost.class, Like.class}, version = 4, exportSchema = false)
+@Database(entities = {User.class, Role.class, Post.class, Notify.class, Document.class, GvPost.class, Like.class, Comment.class}, version = 2, exportSchema = false)
 @TypeConverters({UriTypeConverter.class})
 
 public abstract class AppDatabase extends RoomDatabase {
@@ -43,6 +45,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract DocumentDao documentDao();
     public abstract GvPostDao gvPostDao();
     public abstract LikeDao likeDao();
+    public abstract CommentDao commentDao();
 
 
     public static AppDatabase getDatabase(final Context context) {

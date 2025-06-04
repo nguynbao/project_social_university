@@ -13,6 +13,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.myapplication.R;
+import com.example.myapplication.component.menu;
+import com.example.myapplication.ui.activity_login;
 
 public class admin_home extends AppCompatActivity {
     private LinearLayout layoutCreatePost, layoutManageStudent, layoutUploadDoc, layoutCreateNotification;
@@ -28,7 +30,13 @@ public class admin_home extends AppCompatActivity {
             return insets;
         });
         logout = findViewById(R.id.logout);
-        logout.setOnClickListener(v -> finish());
+        logout.setOnClickListener(v ->
+                {
+                    Intent intent = new Intent(this, activity_login.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Xoá hết backstack
+                    startActivity(intent);
+                }
+                );
         layoutCreatePost = findViewById(R.id.layoutCreatePost);
         layoutManageStudent = findViewById(R.id.layoutManageStudent);
         layoutUploadDoc = findViewById(R.id.layoutUploadDoc);
