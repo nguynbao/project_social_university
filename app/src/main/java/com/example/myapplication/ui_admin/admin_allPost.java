@@ -29,6 +29,7 @@ public class admin_allPost extends AppCompatActivity {
     RecyclerView recyclerView;
     adapter_bai_dang adapter;
     PostDao postDao;
+
     ImageView back;
     AppCompatButton addBD;
     List<Post> postList = new ArrayList<>();
@@ -43,6 +44,7 @@ public class admin_allPost extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         recyclerView = findViewById(R.id.recyclerViewBD);
         postDao = AppDatabase.getDatabase(this).postDao();
         back = findViewById(R.id.img_backBD);

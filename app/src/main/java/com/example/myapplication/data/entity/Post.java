@@ -12,6 +12,9 @@ public class Post {
     private String content;
     private String deadline;
     private String imagePath;
+    @Ignore
+    public Post() {
+    }
 
     public Post(String nameClub, String content, String deadline,String imagePath) {
         this.nameClub = nameClub;

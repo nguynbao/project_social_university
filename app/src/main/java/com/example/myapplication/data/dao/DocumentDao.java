@@ -27,4 +27,6 @@ public interface DocumentDao {
     List<Document> getAllDocuments();
     @Query("SELECT * FROM document_table")
     LiveData<List<Document>> getAllDocumentsbyliveData();
+    @Query("SELECT * FROM document_table WHERE id = :documentId")
+    Document getDocById(int documentId);
 }

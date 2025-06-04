@@ -80,7 +80,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/edtClubName"
+                android:id="@+id/edClubName"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginBottom="16dp"
@@ -102,7 +102,7 @@
 
             <!-- Tài liệu đăng tải -->
             <EditText
-                android:id="@+id/edtPostDescription"
+                android:id="@+id/edPostDescription"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:layout_marginBottom="16dp"
@@ -135,12 +135,11 @@
                 android:orientation="horizontal">
 
                 <ImageView
-
                     android:layout_width="102dp"
                     android:layout_height="82dp"
                     android:src="@drawable/createadmin"/>
                 <EditText
-                    android:id="@+id/uploadDoc"
+                    android:id="@+id/eduploadDoc"
                     android:layout_width="match_parent"
                     android:layout_height="82dp"
                     android:hint="Dán link tài liệu vào đây"

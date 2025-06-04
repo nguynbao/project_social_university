@@ -47,7 +47,7 @@
             android:layout_width="187dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Quản lý tài liệu"
+            android:text="Quản lý bài đăng"
             android:textColor="#1A1A1A"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -104,7 +104,7 @@
         android:id="@+id/addBD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Thêm tài liệu"
+        android:text="Thêm bài đăng"
         android:padding="20dp"
         android:background="@drawable/btn_round_gray"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -12,6 +12,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.data.entity.Post;
 import com.example.myapplication.data.entity.User;
 import com.example.myapplication.ui_admin.admin_editDoc;
+import com.example.myapplication.ui_admin.admin_editPost;
 
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class adapter_bai_dang extends RecyclerView.Adapter<adapter_bai_dang.View
         Post post = postList.get(position);
         holder.etName.setText(post.getContent());
         holder.etName.setOnClickListener(v -> {
-            Intent intent = new Intent(v.getContext(), admin_editDoc.class);
+            Intent intent = new Intent(v.getContext(), admin_editPost.class);
             intent.putExtra("postID", post.getId());
             v.getContext().startActivity(intent);
         });
