@@ -90,7 +90,7 @@
                 android:textSize="20sp" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewBD"
+                android:id="@+id/recyclerViewAllPost"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_marginBottom="30dp"
@@ -101,7 +101,7 @@
 
     </ScrollView>
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/addBD"
+        android:id="@+id/create_Post"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Thêm bài đăng"

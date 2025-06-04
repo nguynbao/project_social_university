@@ -89,6 +89,8 @@ public class admin_creatPost extends AppCompatActivity {
                 postDao.insert(post);
                 runOnUiThread(()->{
                     Toast.makeText(admin_creatPost.this, "Đăng bài thành công", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(admin_creatPost.this, admin_allPost.class);
+                    startActivity(intent);
                     finish();
                 });
             });
