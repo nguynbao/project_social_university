@@ -8,10 +8,11 @@ public class Comment {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String content;
+    private int GvPost_Id;
 
-
-    public Comment( String content) {
+    public Comment( String content, int GvPost_Id) {
         this.content = content;
+        this.GvPost_Id  = GvPost_Id;
     }
 
     public int getId() {
@@ -28,5 +29,13 @@ public class Comment {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public int getGvPost_Id() {
+        return GvPost_Id;
+    }
+
+    public void setGvPost_Id(int gvPost_Id) {
+        GvPost_Id = gvPost_Id;
     }
 }

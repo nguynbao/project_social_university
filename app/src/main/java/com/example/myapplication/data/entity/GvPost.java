@@ -20,16 +20,16 @@ public class GvPost {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String content;
-    private Uri imageUri;
+    private String ImagePath;
     public String studentName;
     @ColumnInfo(name = "student_id")
     private int studentId;
     public GvPost() {
     }
 
-    public GvPost(String content, Uri imageUri, int studentId,String studentName) {
+    public GvPost(String content, String ImagePath, int studentId,String studentName) {
         this.content = content;
-        this.imageUri = imageUri;
+        this.ImagePath = ImagePath;
         this.studentId = studentId;
         this.studentName = studentName;
     }
@@ -50,14 +50,6 @@ public class GvPost {
         this.content = content;
     }
 
-    public Uri getImageUri() {
-        return imageUri;
-    }
-
-    public void setImageUri(Uri imageUri) {
-        this.imageUri = imageUri;
-    }
-
     public int getStudentId() {
         return studentId;
     }
@@ -72,5 +64,13 @@ public class GvPost {
 
     public void setStudentName(String studentName) {
         this.studentName = studentName;
+    }
+
+    public String getImagePath() {
+        return ImagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        ImagePath = imagePath;
     }
 }

@@ -43,11 +43,11 @@ public class fragment_page_tai_lieu extends Fragment {
             AppDatabase db = AppDatabase.getDatabase(getContext());
             DocumentDao documentDao = db.documentDao();
             List<Document> documentList = documentDao.getAllDocuments();
-            for (Document document : documentList){
-                Log.d("Docname", document.getTitle());
-            }
             adapter_document adapterDocument = new adapter_document(documentList, getContext());
-            recycler_documents.setAdapter(adapterDocument);
+
+            requireActivity().runOnUiThread(() -> {
+                recycler_documents.setAdapter(adapterDocument);
+            });
         });
         return view;
     }

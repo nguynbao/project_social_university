@@ -22,6 +22,7 @@ import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 import com.example.myapplication.data.AppDatabase;
 import com.example.myapplication.data.dao.CommentDao;
@@ -32,17 +33,20 @@ import com.example.myapplication.data.entity.GvPost;
 import com.example.myapplication.data.entity.Like;
 import com.example.myapplication.data.entity.User;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import android.os.Handler;
+import android.os.Looper;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Executors;
-import java.util.logging.Handler;
 
 public class adapter_groupSV extends RecyclerView.Adapter<adapter_groupSV.ViewHolder> {
-   List<GvPost> postsList;
+    List<GvPost> postsList;
     private LikeDao likeDao;
     private int currentUserId;
+    public int countComment;
     public interface OnLikeClickListener {
         void onLikeClick(GvPost post, int position);
     }
@@ -72,7 +76,7 @@ public class adapter_groupSV extends RecyclerView.Adapter<adapter_groupSV.ViewHo
         GvPost post = postsList.get(position);
         holder.Sv_name.setText(post.getStudentName());
         holder.Sv_post.setText(post.getContent());
-        holder.Sv_img_post.setImageURI(post.getImageUri());
+        Glide.with(holder.itemView.getContext()).load(new File(post.getImagePath())).into(holder.Sv_img_post);
         Executors.newSingleThreadExecutor().execute(() -> {
             Like existingLike = likeDao.getUserLikeForPost(post.getId(), currentUserId);
             int likeCount = likeDao.getLikeCount(post.getId());
@@ -92,9 +96,53 @@ public class adapter_groupSV extends RecyclerView.Adapter<adapter_groupSV.ViewHo
                 likeClickListener.onLikeClick(post, position);
             }
         });
-
         holder.btn_comment.setOnClickListener(view -> {
-            loadComment(view.getContext());
+            BottomSheetDialog dialog = new BottomSheetDialog(view.getContext());
+            View view1 = LayoutInflater.from(dialog.getContext()).inflate(R.layout.popup_comment, null);
+            dialog.setContentView(view1);
+
+            RecyclerView recycler_Comment = view1.findViewById(R.id.recycler_Comment);
+            recycler_Comment.setLayoutManager(new LinearLayoutManager(view1.getContext()));
+            EditText edt_Comment = view1.findViewById(R.id.edt_Comment);
+            Button btn_Send = view1.findViewById(R.id.btn_Send);
+
+            int gvPost_id = post.getId();
+
+            adapter_comment adapterComment = new adapter_comment();
+            recycler_Comment.setAdapter(adapterComment);
+
+            AppDatabase db = AppDatabase.getDatabase(view1.getContext());
+            CommentDao commentDao = db.commentDao();
+
+            loadComment(view1.getContext(), adapterComment, recycler_Comment,gvPost_id, () -> {
+                holder.count_Comment.setText(adapterComment.getItemCount() + " comment");
+            });
+
+            btn_Send.setOnClickListener(sendView -> {
+                String newComment = edt_Comment.getText().toString().trim();
+
+                if (!newComment.isEmpty()) {
+                    Executors.newSingleThreadExecutor().execute(() -> {
+                        Comment comment = new Comment(newComment, gvPost_id);
+                        commentDao.insert(comment);
+                        loadComment(view1.getContext(), adapterComment, recycler_Comment, gvPost_id, () -> {
+                            holder.count_Comment.setText(adapterComment.getItemCount() + " comment");
+                        });
+                    });
+                    edt_Comment.post(() -> edt_Comment.setText(""));
+                }
+            });
+
+            dialog.show();
+        });
+        Executors.newSingleThreadExecutor().execute(()->{
+            AppDatabase db = AppDatabase.getDatabase(holder.itemView.getContext());
+            CommentDao commentDao = db.commentDao();
+            List<Comment> commentList = commentDao.getAllComments();
+            int countComment1 = commentList.size();
+            new Handler(Looper.getMainLooper()).post(() -> {
+                holder.count_Comment.setText(countComment1 + " comment");
+            });
         });
     }
 
@@ -104,7 +152,7 @@ public class adapter_groupSV extends RecyclerView.Adapter<adapter_groupSV.ViewHo
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView Sv_img_post, iconLike, btn_comment;
-        TextView Sv_name, Sv_post, SoLuong;
+        TextView Sv_name, Sv_post, SoLuong, count_Comment;
 
         public ViewHolder(View itemView) {
 
@@ -115,74 +163,22 @@ public class adapter_groupSV extends RecyclerView.Adapter<adapter_groupSV.ViewHo
             iconLike = itemView.findViewById(R.id.iconLike);
             SoLuong = itemView.findViewById(R.id.SoLuong);
             btn_comment = itemView.findViewById(R.id.btn_comment);
+            count_Comment = itemView.findViewById(R.id.count_Comment);
         }
     }
 
-    public void loadComment(Context context){
-        BottomSheetDialog dialog = new BottomSheetDialog(context);
-        View view1 = LayoutInflater.from(dialog.getContext()).inflate(R.layout.popup_comment, null);
-        dialog.setContentView(view1);
-        EditText edt_Comment = view1.findViewById(R.id.edt_Comment);
-        Button btn_Send = view1.findViewById(R.id.btn_Send);
-        RecyclerView recycler_Comment = view1.findViewById(R.id.recycler_Comment);
-        recycler_Comment.setLayoutManager(new LinearLayoutManager(view1.getContext()));
-        adapter_comment adapterComment = new adapter_comment();
-        Executors.newSingleThreadExecutor().execute(()->{
-            AppDatabase db = AppDatabase.getDatabase(view1.getContext());
-            CommentDao commentDao = db.commentDao();
-            List<Comment> commentList = commentDao.getAllComments();
-            Collections.reverse(commentList);
-            adapterComment.setData(commentList);
-            recycler_Comment.setAdapter(adapterComment);
-        });
-        dialog.show();
-        btn_Send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String newComment = edt_Comment.getText().toString();
-                if (!newComment.isEmpty()){
-                    updateContent(view.getContext(), newComment);
-                    dialog.dismiss();
-                }
-            }
-        });
-    }
+    // Hàm loadComment với callback
+    public void loadComment(Context context, adapter_comment adapter, RecyclerView recyclerView, int gvPost_id, Runnable onComplete) {
+        AppDatabase db = AppDatabase.getDatabase(context);
+        CommentDao commentDao = db.commentDao();
 
-    public void updateContent(Context context, String newComment){
-        BottomSheetDialog dialog = new BottomSheetDialog(context);
-        View view1 = LayoutInflater.from(dialog.getContext()).inflate(R.layout.popup_comment, null);
-        dialog.setContentView(view1);
-        EditText edt_Comment = view1.findViewById(R.id.edt_Comment);
-        Button btn_Send = view1.findViewById(R.id.btn_Send);
-        RecyclerView recycler_Comment = view1.findViewById(R.id.recycler_Comment);
-        recycler_Comment.setLayoutManager(new LinearLayoutManager(view1.getContext()));
-        adapter_comment adapterComment = new adapter_comment();
-        Executors.newSingleThreadExecutor().execute(()->{
-            AppDatabase db = AppDatabase.getDatabase(view1.getContext());
-            CommentDao commentDao = db.commentDao();
-            Comment newcomment = new Comment(newComment);
-            commentDao.insert(newcomment);
-            List<Comment> commentList = commentDao.getAllComments();
-            for(Comment comment : commentList){
-                Log.d("Comment", comment.getContent());
-            }
-            Collections.reverse(commentList);
-            adapterComment.setData(commentList);
-            if(adapterComment!= null){
-                Log.d("adapter", "null");
-            }
-            recycler_Comment.setAdapter(adapterComment);
-        });
-        dialog.show();
-        btn_Send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String newComment = edt_Comment.getText().toString();
-                if (!newComment.isEmpty()){
-                    updateContent(view.getContext(), newComment);
-                    dialog.dismiss();
-                }
-            }
+        Executors.newSingleThreadExecutor().execute(() -> {
+            List<Comment> comments = commentDao.getCommentsByIdPost(gvPost_id);
+            new Handler(Looper.getMainLooper()).post(() -> {
+                adapter.setData(comments);
+                recyclerView.scrollToPosition(comments.size() - 1);
+                if (onComplete != null) onComplete.run();
+            });
         });
     }
 }

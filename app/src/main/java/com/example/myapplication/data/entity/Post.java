@@ -12,15 +12,14 @@ public class Post {
     private String content;
     private String deadline;
     private String imagePath;
-    @Ignore
-    public Post() {
-    }
+    private String urlJoin;
 
-    public Post(String nameClub, String content, String deadline,String imagePath) {
+    public Post(String nameClub, String content, String deadline,String imagePath,String urlJoin) {
         this.nameClub = nameClub;
         this.content = content;
         this.deadline = deadline;
         this.imagePath = imagePath;
+        this.urlJoin = urlJoin;
     }
 
     public int getId() {
@@ -61,5 +60,13 @@ public class Post {
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    public String getUrlJoin() {
+        return urlJoin;
+    }
+
+    public void setUrlJoin(String urlJoin) {
+        this.urlJoin = urlJoin;
     }
 }

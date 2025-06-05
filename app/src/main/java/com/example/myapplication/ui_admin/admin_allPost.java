@@ -2,7 +2,8 @@ package com.example.myapplication.ui_admin;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
@@ -15,23 +16,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.adapter.adapter_bai_dang;
-import com.example.myapplication.adapter.adapter_sinh_vien;
+import com.example.myapplication.adapter.adapter_AllPost;
 import com.example.myapplication.data.AppDatabase;
 import com.example.myapplication.data.dao.PostDao;
 import com.example.myapplication.data.entity.Post;
-import com.example.myapplication.data.entity.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
 
 public class admin_allPost extends AppCompatActivity {
-    RecyclerView recyclerView;
-    adapter_bai_dang adapter;
+    RecyclerView recyclerViewAllPost;
     PostDao postDao;
-
-    ImageView back;
-    AppCompatButton addBD;
+    adapter_AllPost adapterAllPost;
+    ImageView img_backBD;
+    AppCompatButton create_Post;
     List<Post> postList = new ArrayList<>();
 
     @Override
@@ -39,39 +38,31 @@ public class admin_allPost extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.admin_all_post);
+        recyclerViewAllPost = findViewById(R.id.recyclerViewAllPost);
+        recyclerViewAllPost.setLayoutManager(new LinearLayoutManager(this));
+        AppDatabase db = AppDatabase.getDatabase(this);
+        PostDao postDao = db.postDao();
+        Executors.newSingleThreadExecutor().execute(()->{
+            List<Post> postList = postDao.getAllPosts();
+            adapterAllPost = new adapter_AllPost(postList, this);
+            recyclerViewAllPost.setAdapter(adapterAllPost);
+        });
+        create_Post = findViewById(R.id.create_Post);
+        create_Post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(admin_allPost.this, admin_creatPost.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        img_backBD = findViewById(R.id.img_backBD);
+        img_backBD.setOnClickListener(v-> finish());
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
-        });
-
-        recyclerView = findViewById(R.id.recyclerViewBD);
-        postDao = AppDatabase.getDatabase(this).postDao();
-        back = findViewById(R.id.img_backBD);
-        back.setOnClickListener(v -> {
-            finish();
-    });
-        loadData();
-        addBD = findViewById(R.id.addBD);
-        addBD.setOnClickListener(v -> {
-            startActivity(new Intent(this, admin_creatPost.class));
-        });
-
-}
-    private void loadData() {
-        // Dùng LiveData để quan sát dữ liệu
-        postDao.getAllPostsByliveData().observe(this, posts -> {
-            postList = posts; // Cập nhật danh sách
-
-            // Thiết lập RecyclerView
-            if (adapter == null) {
-                adapter = new adapter_bai_dang(posts);
-                recyclerView.setLayoutManager(new LinearLayoutManager(this));
-                recyclerView.setAdapter(adapter);
-            } else {
-                adapter.setData(posts);
-            }
-
         });
     }
 }

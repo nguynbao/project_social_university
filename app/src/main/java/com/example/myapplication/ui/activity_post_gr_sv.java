@@ -22,6 +22,9 @@ import com.example.myapplication.data.dao.GvPostDao;
 import com.example.myapplication.data.dao.UserDao;
 import com.example.myapplication.data.entity.GvPost;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.concurrent.Executors;
 
 public class activity_post_gr_sv extends AppCompatActivity {
@@ -29,7 +32,8 @@ public class activity_post_gr_sv extends AppCompatActivity {
     EditText GV_post;
     AppCompatButton GV_btnUpload;
     GvPostDao gvPostDao;
-    Uri selectedImageUri = null;
+    Uri selectedImageUri;
+    String imageFilePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +59,11 @@ public class activity_post_gr_sv extends AppCompatActivity {
         GV_btnUpload = findViewById(R.id.GV_btnUpload);
         GV_btnUpload.setOnClickListener(v -> {
             String content = GV_post.getText().toString();
-            Uri imageUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.drawable.img_bai_dang);
-
             Executors.newSingleThreadExecutor().execute(() -> {
                 UserDao userDao = AppDatabase.getDatabase(this).userDao();
                 String studentName = userDao.getUserNameById(studentId);
 
-                GvPost post = new GvPost(content, imageUri, studentId, studentName);
+                GvPost post = new GvPost(content, imageFilePath, studentId, studentName);
                 gvPostDao.insert(post);
 
                 runOnUiThread(this::finish);
@@ -78,9 +80,46 @@ public class activity_post_gr_sv extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
-            Uri selectedImageUri = data.getData();
-            GV_imgUpload.setImageURI(selectedImageUri);
-            // Lưu selectedImageUri để sử dụng khi upload (tuỳ bạn)
+            selectedImageUri = data.getData();
+            if (selectedImageUri != null) {
+                GV_imgUpload.setImageURI(selectedImageUri);
+                // Tạo tên file
+                String fileName = "img_" + System.currentTimeMillis() + ".jpg";
+
+                // Copy ảnh về bộ nhớ trong
+                String localPath = copyFileToInternalStorage(selectedImageUri, fileName);
+                if (localPath != null) {
+                    imageFilePath = localPath; // Gán vào biến để sau này lưu vào Room
+                    Toast.makeText(this, "Đã lưu ảnh vào: " + localPath, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Lỗi khi sao chép ảnh", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        }
+    }
+
+    private String copyFileToInternalStorage(Uri uri, String fileName) {
+        try {
+            InputStream inputStream = getContentResolver().openInputStream(uri);
+            if (inputStream == null) return null;
+
+            File file = new File(getFilesDir(), fileName);
+            FileOutputStream outputStream = new FileOutputStream(file);
+
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, length);
+            }
+
+            outputStream.close();
+            inputStream.close();
+
+            return file.getAbsolutePath();  // Trả về đường dẫn kiểu: /data/data/your.package.name/files/xxx.jpg
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

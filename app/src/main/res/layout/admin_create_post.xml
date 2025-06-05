@@ -156,7 +156,7 @@
             <!-- Image Upload Area -->
             <LinearLayout
                 android:id="@+id/layoutImageUpload"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_bai_dang"
                 android:layout_marginBottom="16dp"
@@ -169,6 +169,16 @@
                     android:layout_width="184dp"
                     android:layout_height="184dp"
                     android:src="@drawable/img_1" />
+
+                <EditText
+                    android:id="@+id/urlLink"
+                    android:layout_width="match_parent"
+                    android:layout_height="184dp"
+                    android:background="@drawable/edt_round_gray"
+                    android:hint="Nhập link tham gia"
+                    android:paddingLeft="5dp"
+                    android:textColorHint="@color/gray"
+                    android:textColor="@color/gray"/>
 
             </LinearLayout>
 

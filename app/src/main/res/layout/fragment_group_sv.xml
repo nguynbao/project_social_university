@@ -55,7 +55,7 @@
         android:id="@+id/scrollView4"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="20dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
@@ -71,6 +71,7 @@
                 android:background="@drawable/edt_round_gray"
                 android:hint="Chia sẽ khoảng khắc tại đây"
                 android:padding="15dp"
+                android:layout_margin="20dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/gray" />
 
