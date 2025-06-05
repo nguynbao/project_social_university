@@ -3,6 +3,7 @@ package com.example.myapplication.ui_admin;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
@@ -28,7 +29,7 @@ public class admin_allPost extends AppCompatActivity {
     RecyclerView recyclerViewAllPost;
     PostDao postDao;
     adapter_AllPost adapterAllPost;
-    ImageView back;
+    ImageView img_backBD;
     AppCompatButton create_Post;
     List<Post> postList = new ArrayList<>();
 
@@ -55,6 +56,9 @@ public class admin_allPost extends AppCompatActivity {
                 finish();
             }
         });
+
+        img_backBD = findViewById(R.id.img_backBD);
+        img_backBD.setOnClickListener(v-> finish());
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

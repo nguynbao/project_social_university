@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -93,21 +94,30 @@ public class admin_editPost extends AppCompatActivity {
             String content = edPostDescription.getText().toString();
             String dealine = tvtimeSelection.getText().toString();
             String urlJoint = urlLink.getText().toString();
-            Post post = new Post(nameClub, content, dealine, imagePath, urlJoint);
-            postDao = AppDatabase.getDatabase(getApplicationContext()).postDao();
-            Executors.newSingleThreadExecutor().execute(()->{
-                Post post1 = postDao.getPostById(postId);
-                postDao.delete(post1);
-                postDao.insert(post);
-                runOnUiThread(()->{
-                    Toast.makeText(admin_editPost.this, "Chỉnh bài thành công", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(admin_editPost.this, admin_allPost.class);
-                    startActivity(intent);
-                    finish();
-                });
-            });
+            if(!nameClub.isEmpty() && !content.isEmpty() && !dealine.isEmpty() && urlJoint != null){
+                if(Patterns.WEB_URL.matcher(urlJoint).matches()){
+                    Post post = new Post(nameClub, content, dealine, imagePath, urlJoint);
+                    postDao = AppDatabase.getDatabase(getApplicationContext()).postDao();
+                    Executors.newSingleThreadExecutor().execute(()->{
+                        Post post1 = postDao.getPostById(postId);
+                        postDao.delete(post1);
+                        postDao.insert(post);
+                        runOnUiThread(()->{
+                            Toast.makeText(admin_editPost.this, "Chỉnh bài thành công", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(admin_editPost.this, admin_allPost.class);
+                            startActivity(intent);
+                            finish();
+                        });
+                    });
+                }else {
+                    Toast.makeText(this, "Vui lòng nhập đúng Link Website", Toast.LENGTH_SHORT).show();
+                }
+
+            }else{
+                Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin ", Toast.LENGTH_SHORT).show();
+            }
         }else {
-            Toast.makeText(admin_editPost.this, "Vui lòng thêm ảnh", Toast.LENGTH_SHORT).show();
+            Toast.makeText(admin_editPost.this, "Vui lòng thêm ảnh hoặc nhập đủ thông tin", Toast.LENGTH_SHORT).show();
         }
 
     }

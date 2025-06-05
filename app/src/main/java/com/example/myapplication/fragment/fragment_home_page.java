@@ -2,6 +2,7 @@ package com.example.myapplication.fragment;
 import com.example.myapplication.component.menu;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -39,15 +40,18 @@ public class fragment_home_page extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
         RecyclerView recycler_homepage = view.findViewById(R.id.recycler_homepage);
         recycler_homepage.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter_home_pages adapterHomePages = new adapter_home_pages();
+        recycler_homepage.setAdapter(adapterHomePages);
+        Context context = requireContext();
         Executors.newSingleThreadExecutor().execute(()->{
-            AppDatabase db = AppDatabase.getDatabase(getContext());
+            AppDatabase db = AppDatabase.getDatabase(context);
             PostDao postDao = db.postDao();
             List<Post> postList = postDao.getAllPosts();
-            for (Post post : postList){
-                Log.d("Post:", post.getNameClub());
-            }
-            adapter_home_pages adapterHomePages = new adapter_home_pages(postList, getContext());
-            recycler_homepage.setAdapter(adapterHomePages);
+            adapter_home_pages adapterHomePages1 = new adapter_home_pages(postList, context);
+            requireActivity().runOnUiThread(() -> {
+                recycler_homepage.setAdapter(adapterHomePages1);
+            });
+
         });
         ImageView menuhp = view.findViewById(R.id.img_menuhp);
         menuhp.setOnClickListener(view1 -> {

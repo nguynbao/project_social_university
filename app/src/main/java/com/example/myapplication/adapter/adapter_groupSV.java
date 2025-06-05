@@ -140,7 +140,9 @@ public class adapter_groupSV extends RecyclerView.Adapter<adapter_groupSV.ViewHo
             CommentDao commentDao = db.commentDao();
             List<Comment> commentList = commentDao.getAllComments();
             int countComment1 = commentList.size();
-            holder.count_Comment.setText(countComment1 + "comment");
+            new Handler(Looper.getMainLooper()).post(() -> {
+                holder.count_Comment.setText(countComment1 + " comment");
+            });
         });
     }
 

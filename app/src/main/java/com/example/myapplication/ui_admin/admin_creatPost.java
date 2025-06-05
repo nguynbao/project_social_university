@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -82,19 +83,26 @@ public class admin_creatPost extends AppCompatActivity {
             content = etPostDescription.getText().toString();
             deadline = edttimeSelection.getText().toString();
             urlJoin = urlLink.getText().toString();
-            Post post = new Post(nameClub, content, deadline, imagePath_Uri, urlJoin);
-            Executors.newSingleThreadExecutor().execute(()->{
-                AppDatabase db = AppDatabase.getDatabase(getApplicationContext());
-                PostDao postDao = db.postDao();
-                postDao.insert(post);
-                runOnUiThread(()->{
-                    Toast.makeText(admin_creatPost.this, "Đăng bài thành công", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(admin_creatPost.this, admin_allPost.class);
-                    startActivity(intent);
-                    finish();
-                });
-            });
-
+            if(!nameClub.isEmpty() && !content.isEmpty() && !deadline.isEmpty() && urlJoin != null) {
+                if (Patterns.WEB_URL.matcher(urlJoin).matches()) {
+                    Post post = new Post(nameClub, content, deadline, imagePath_Uri, urlJoin);
+                    Executors.newSingleThreadExecutor().execute(() -> {
+                        AppDatabase db = AppDatabase.getDatabase(getApplicationContext());
+                        PostDao postDao = db.postDao();
+                        postDao.insert(post);
+                        runOnUiThread(() -> {
+                            Toast.makeText(admin_creatPost.this, "Đăng bài thành công", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(admin_creatPost.this, admin_allPost.class);
+                            startActivity(intent);
+                            finish();
+                        });
+                    });
+                }else {
+                    Toast.makeText(this, "Vui lòng nhập đúng Link Website", Toast.LENGTH_SHORT).show();
+                }
+            }else {
+                    Toast.makeText(this, "Nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                }
         }else {
             Toast.makeText(admin_creatPost.this, "Vui lòng thêm ảnh", Toast.LENGTH_SHORT).show();
         }

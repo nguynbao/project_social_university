@@ -21,12 +21,14 @@ import com.example.myapplication.data.entity.Post;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class adapter_home_pages extends RecyclerView.Adapter<adapter_home_pages.ViewHolder> {
 
     List<Post> postList;
     Context context;
+    public adapter_home_pages() {this.postList = new ArrayList<>();}
     public adapter_home_pages(List<Post> postList, Context context) {
         this.postList = postList;
         this.context = context;

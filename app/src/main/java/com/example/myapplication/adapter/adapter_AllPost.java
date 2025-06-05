@@ -1,7 +1,5 @@
 package com.example.myapplication.adapter;
 
-import static android.os.Build.VERSION_CODES.R;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -32,13 +30,13 @@ public class adapter_AllPost extends RecyclerView.Adapter<adapter_AllPost.ViewHo
         TextView textView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = itemView.findViewById(android.R.id.text1);
+            textView = itemView.findViewById(R.id.text1);
         }
     }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_bai_dang, parent, false);
         return new ViewHolder(view);
     }
 
