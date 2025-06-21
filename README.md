@@ -60,6 +60,7 @@
 - Android (Java/Kotlin)
 - Firebase (Realtime Database) và Room Database
 - Thư viện xử lý hình ảnh: Glide hoặc Picasso (tùy chọn)
+- AWS S3 (Simple Storage Service) để lưu trữ hình ảnh
 ---
 
 ## 🚀 Hướng dẫn cài đặt
