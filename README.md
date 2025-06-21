@@ -30,7 +30,7 @@
   - Hiển thị thông tin cá nhân của sinh viên.
   - Đổi mật khẩu tài khoản.
   
-  - - **Trang Cá nhân**
+- **Trang Cá nhân**
   - Hiển thị thông tin cá nhân của sinh viên.
   - Có thể thêm ảnh đại diện, giới thiệu bản thân.
 
