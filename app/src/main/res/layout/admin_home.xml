@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/logout"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/icon_back"
+        app:layout_constraintEnd_toStartOf="@+id/header"
+        app:layout_constraintHorizontal_bias="0.563"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!-- Header -->
+
+    <!-- Main Content Grid -->
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
+        android:layout_marginStart="89dp"
+        android:layout_marginEnd="69dp"
+        android:background="@drawable/thame_header_gray"
+        android:clipToPadding="false"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.243"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/startadmin"/>
+
+        <TextView
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="ADMIN SITE"
+            android:textColor="#1A1A1A"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <GridLayout
+        android:layout_width="0dp"
+        android:layout_height="321dp"
+        android:layout_marginTop="117dp"
+        android:layout_marginBottom="227dp"
+        android:columnCount="2"
+        android:padding="16dp"
+        android:rowCount="2"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Tạo bài đăng -->
+        <LinearLayout
+            android:id="@+id/layoutCreatePost"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:background="@drawable/edt_round_gray"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/penadmin" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Tạo bài đăng"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <!-- Quản lý sinh viên -->
+        <LinearLayout
+            android:id="@+id/layoutManageStudent"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:background="@drawable/edt_round_gray"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/useradmin"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Quản lý sinh viên"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <!-- Đăng tải tài liệu -->
+        <LinearLayout
+            android:id="@+id/layoutUploadDoc"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:background="@drawable/edt_round_gray"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/createadmin" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Đăng tải tài liệu"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <!-- Tạo thông báo -->
+        <LinearLayout
+            android:id="@+id/layoutCreateNotification"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:background="@drawable/edt_round_gray"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/notice" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Tạo thông báo"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </GridLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

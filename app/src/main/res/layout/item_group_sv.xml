@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:layout_marginBottom="15dp">
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_user" />
+
+        <TextView
+            android:id="@+id/SvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:text="Tên Sinh Viên"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/Sv_img_post"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/bg_bai_dang"
+        android:src="@drawable/img_bai_dang"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+    <TextView
+        android:id="@+id/Sv_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Hiến máu xong ổn không mọi người"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.17"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Sv_img_post" />
+
+    <ImageView
+        android:id="@+id/iconLike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/icon_thich"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Sv_post" />
+
+    <TextView
+        android:id="@+id/SoLuong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
+        android:text="33 likes"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        app:layout_constraintStart_toEndOf="@+id/iconLike"
+        app:layout_constraintTop_toBottomOf="@+id/Sv_post" />
+
+    <ImageView
+        android:id="@+id/btn_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/icon_cmt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.321"
+        app:layout_constraintStart_toEndOf="@+id/SoLuong"
+        app:layout_constraintTop_toBottomOf="@+id/Sv_post" />
+
+    <TextView
+        android:id="@+id/count_Comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
+        android:text="33 comment"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        app:layout_constraintStart_toEndOf="@+id/btn_comment"
+        app:layout_constraintTop_toBottomOf="@+id/Sv_post" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

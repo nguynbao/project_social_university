@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/logo_new"
+        android:label="Học Viện Hàng Không"
+        android:roundIcon="@drawable/logo_new"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication"
+        tools:targetApi="31" >
+        <activity
+            android:name=".ui.activity_message"
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity_orther"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity_user"
+            android:exported="false" />
+        <activity
+            android:name=".ui_admin.admin_editDoc"
+            android:exported="false" />
+        <activity
+            android:name=".ui_admin.admin_editPost"
+            android:exported="false" />
+        <activity
+            android:name=".ui_admin.admin_allDoc"
+            android:exported="false" />
+        <activity
+            android:name=".ui_admin.admin_allPost"
+            android:exported="false" />
+        <activity
+            android:name=".ui_admin.admin_post_data"
+            android:exported="false" />
+        <activity
+            android:name=".ui_admin.admin_them_sv"
+            android:exported="false" />
+        <activity
+            android:name=".ui_admin.admin_creatDoc"
+            android:exported="false" />
+        <activity
+            android:name=".ui_admin.admin_home"
+            android:exported="false" />
+        <activity
+            android:name=".ui_admin.admin_quan_ly_tai_khoan"
+            android:exported="false" />
+        <activity
+            android:name=".ui_admin.admin_quan_ly_sv"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity_post_gr_sv"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity_form"
+            android:exported="false" />
+        <activity
+            android:name=".ui_admin.admin_creatPost"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity_signup"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity_home"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity_login"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
