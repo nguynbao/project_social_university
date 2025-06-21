@@ -26,11 +26,13 @@
 - **Trang Thông báo**  
   - Hiển thị các bài viết thông báo từ quản trị viên, bao gồm thông báo mới và cũ để tiện theo dõi.
 
-- **Trang Cá nhân**  
-  - Hiển thị thông tin cá nhân của sinh viên.  
-  - Danh sách các hoạt động đã đăng ký kèm theo ngày bắt đầu và ngày kết thúc.  
-  - Xác nhận đã tham gia hoạt động bằng cách chụp ảnh làm minh chứng mỗi lần tham gia.  
+- **Trang Thông tin**  
+  - Hiển thị thông tin cá nhân của sinh viên.
   - Đổi mật khẩu tài khoản.
+  
+  - - **Trang Cá nhân**
+  - Hiển thị thông tin cá nhân của sinh viên.
+  - Có thể thêm ảnh đại diện, giới thiệu bản thân.
 
 > **Lưu ý:** Ứng dụng không có chức năng đăng ký tài khoản trực tiếp. Tài khoản (cả sinh viên và quản trị viên) sẽ được tạo thủ công bởi quản trị viên.
 
