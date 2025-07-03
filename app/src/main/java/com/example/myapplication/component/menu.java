@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.example.myapplication.R;
 import com.example.myapplication.ui.activity_form;
 import com.example.myapplication.ui.activity_login;
+import com.example.myapplication.ui.activity_update_account;
 import com.example.myapplication.ui.activity_user;
 
 public class menu {
@@ -34,6 +35,13 @@ public class menu {
             }
             if (item.getItemId() == R.id.detail) {
                 Intent intent = new Intent(context, activity_user.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Log.d("TAG", "openMenu: "+intent);
+                context.startActivity(intent);
+                return true;
+            }
+            if (item.getItemId() == R.id.update) {
+                Intent intent = new Intent(context, activity_update_account.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 Log.d("TAG", "openMenu: "+intent);
                 context.startActivity(intent);

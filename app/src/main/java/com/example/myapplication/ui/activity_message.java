@@ -36,7 +36,6 @@ public class activity_message extends AppCompatActivity {
     ImageView back;
     EditText inputMessage;
     private DatabaseReference chatRef;
-
     private int senderId;
     private int receiverId;
 
@@ -56,9 +55,7 @@ public class activity_message extends AppCompatActivity {
         sendButton = findViewById(R.id.imageButton);
         inputMessage = findViewById(R.id.input_mess);
         back = findViewById(R.id.back);
-        back.setOnClickListener(v -> {
-            finish();
-        });
+        back.setOnClickListener(v -> {finish();});
         // Kiểm tra hợp lệ
         if (senderId == -1 || receiverId == -1) {
             finish();

@@ -10,5 +10,6 @@
     <color name="gray">#969696</color>
     <color name="text_color">#8C8C8C</color>
     <color name="red">#FF7C7C</color>
-
+    <color name="momo">#D82D88</color>
+    <color name="vnpay">#005BAA</color>
 </resources>

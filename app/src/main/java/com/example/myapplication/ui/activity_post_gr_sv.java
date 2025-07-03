@@ -58,7 +58,16 @@ public class activity_post_gr_sv extends AppCompatActivity {
 
         GV_btnUpload = findViewById(R.id.GV_btnUpload);
         GV_btnUpload.setOnClickListener(v -> {
+
             String content = GV_post.getText().toString();
+            if (content.isEmpty()) {
+                Toast.makeText(this, "Vui lòng nhập tiêu đề/nội dung bài đăng", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (imageFilePath == null || imageFilePath.isEmpty()) {
+                Toast.makeText(this, "Vui lòng chọn hình ảnh cho bài đăng", Toast.LENGTH_SHORT).show();
+                return;
+            }
             Executors.newSingleThreadExecutor().execute(() -> {
                 UserDao userDao = AppDatabase.getDatabase(this).userDao();
                 String studentName = userDao.getUserNameById(studentId);
